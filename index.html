@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#F8E8EC">
+  <title>Аделіна — прикорм</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #FFF9F7;
+      color: #51464A;
+    }
+
+    header {
+      background: #F8E8EC;
+      padding: 28px 20px 22px;
+      text-align: center;
+      border-radius: 0 0 28px 28px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+      color: #795F67;
+    }
+
+    header p {
+      margin: 7px 0 0;
+      color: #987F86;
+      font-size: 14px;
+    }
+
+    .container {
+      padding: 20px;
+      padding-bottom: 90px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 18px;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 15px rgba(120, 90, 100, 0.07);
+    }
+
+    .card h2 {
+      margin: 0 0 10px;
+      font-size: 19px;
+      color: #705A61;
+    }
+
+    .welcome {
+      background: #F2EEE8;
+    }
+
+    .button {
+      border: none;
+      background: #E9D5DC;
+      color: #634F56;
+      padding: 12px 18px;
+      border-radius: 14px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .product {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 13px 0;
+      border-bottom: 1px solid #F1E8EA;
+    }
+
+    .product:last-child {
+      border-bottom: none;
+    }
+
+    .product label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 16px;
+    }
+
+    input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      accent-color: #C99FAA;
+    }
+
+    .tag {
+      font-size: 11px;
+      padding: 5px 8px;
+      border-radius: 10px;
+      background: #F5E7EA;
+      color: #856B73;
+    }
+
+    .allergen {
+      background: #F8E6D9;
+      color: #87624D;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 5px;
+      box-shadow: 0 -3px 15px rgba(100, 80, 90, 0.08);
+    }
+
+    .nav-button {
+      border: none;
+      background: none;
+      color: #9A858B;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .nav-button span {
+      display: block;
+      font-size: 21px;
+      margin-bottom: 2px;
+    }
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 25px 10px;
+      color: #A8959A;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🌸 Аделіна</h1>
+  <p>Мій щоденник прикорму</p>
+</header>
+
+<div class="container">
+
+  <!-- ГОЛОВНА -->
+  <section id="home" class="section active">
+
+    <div class="card welcome">
+      <h2>Привіт, Аделіно! 🌷</h2>
+      <p>
+        Тут ми будемо зберігати всі твої маленькі кулінарні відкриття.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>🥕 Продукти</h2>
+
+      <div class="product">
+        <label>
+          <input type="checkbox" data-product="Кабачок">
+          Кабачок
+        </label>
+      </div>
+
+      <div class="product">
+        <label>
+          <input type="checkbox" data-product="Броколі">
+          Броколі
+        </label>
+      </div>
+
+      <div class="product">
+        <label>
+          <input type="checkbox" data-product="Цвітна капуста">
+          Цвітна капуста
+        </label>
+      </div>
+
+      <div class="product">
+        <label>
+          <input type="checkbox" data-product="Яблуко">
+          Яблуко
+        </label>
+      </div>
+
+      <div class="product">
+        <label>
+          <input type="checkbox" data-product="Банан">
+          Банан
+        </label>
+      </div>
+
+      <div class="product">
+        <label>
+          <input type="checkbox" data-product="Груша">
+          Груша
+        </label>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>⚠️ Алергени</h2>
+
+      <div class="product">
+        <label>
+          <input type="checkbox" data-product="Яйце">
+          Яйце
+        </label>
+        <span class="tag allergen">алерген</span>
+      </div>
+
+      <div class="product">
+        <label>
+          <input type="checkbox" data-product="Арахіс">
+          Арахіс
+        </label>
+        <span class="tag allergen">алерген</span>
+      </div>
+
+      <div class="product">
+        <label>
+          <input type="checkbox" data-product="Молоко">
+          Молоко
+        </label>
+        <span class="tag allergen">алерген</span>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ЩОДЕННИК -->
+  <section id="diary" class="section">
+
+    <div class="card">
+      <h2>📖 Щоденник</h2>
+
+      <div class="empty">
+        Тут з'являться записи про те,
+        що їла Аделіна та як вона реагувала.
+      </div>
+
+      <button class="button" onclick="addEntry()">
+        + Додати запис
+      </button>
+    </div>
+
+  </section>
+
+
+  <!-- КАЛЕНДАР -->
+  <section id="calendar" class="section">
+
+    <div class="card">
+      <h2>📅 Календар</h2>
+      <p>Тут ми будемо бачити історію прикорму по днях.</p>
+    </div>
+
+  </section>
+
+
+  <!-- СТАТИСТИКА -->
+  <section id="stats" class="section">
+
+    <div class="card">
+      <h2>📊 Статистика</h2>
+
+      <p>
+        Введено продуктів:
+        <strong id="counter">0</strong>
+      </p>
+    </div>
+
+  </section>
+
+</div>
+
+
+<!-- НИЖНЄ МЕНЮ -->
+
+<nav class="bottom-nav">
+
+  <button class="nav-button" onclick="showSection('home')">
+    <span>🏠</span>
+    Головна
+  </button>
+
+  <button class="nav-button" onclick="showSection('diary')">
+    <span>📖</span>
+    Щоденник
+  </button>
+
+  <button class="nav-button" onclick="showSection('calendar')">
+    <span>📅</span>
+    Календар
+  </button>
+
+  <button class="nav-button" onclick="showSection('stats')">
+    <span>📊</span>
+    Статистика
+  </button>
+
+</nav>
+
+
+<script>
+
+  // Перемикання розділів
+
+  function showSection(sectionId) {
+
+    document.querySelectorAll('.section').forEach(section => {
+      section.classList.remove('active');
+    });
+
+    document.getElementById(sectionId).classList.add('active');
+
+    window.scrollTo(0, 0);
+  }
+
+
+  // Збереження введених продуктів
+
+  const checkboxes = document.querySelectorAll(
+    'input[type="checkbox"]'
+  );
+
+  checkboxes.forEach(box => {
+
+    const product = box.dataset.product;
+
+    box.checked =
+      localStorage.getItem('product_' + product) === 'true';
+
+    box.addEventListener('change', () => {
+
+      localStorage.setItem(
+        'product_' + product,
+        box.checked
+      );
+
+      updateCounter();
+    });
+
+  });
+
+
+  // Лічильник
+
+  function updateCounter() {
+
+    let count = 0;
+
+    checkboxes.forEach(box => {
+
+      if (box.checked) {
+        count++;
+      }
+
+    });
+
+    document.getElementById('counter').textContent = count;
+  }
+
+  updateCounter();
+
+
+  // Поки що тестова кнопка щоденника
+
+  function addEntry() {
+
+    alert(
+      'Далі ми додамо повноцінний щоденник з датою, продуктом, кількістю, реакцією та фотографією 💗'
+    );
+
+  }
+
+</script>
+
+</body>
+</html>
