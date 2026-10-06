@@ -1,0 +1,17 @@
+{
+  "name": "Аделіна — Мій прикорм",
+  "short_name": "Аделіна",
+  "description": "Щоденник прикорму Аделіни",
+  "lang": "uk",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fff9fb",
+  "theme_color": "#f7dce6",
+  "categories": [
+    "health",
+    "lifestyle",
+    "productivity"
+  ]
+}
