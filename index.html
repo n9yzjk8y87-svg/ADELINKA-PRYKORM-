@@ -1,39 +1,43 @@
 <!DOCTYPE html>
 <html lang="uk">
-<head> 
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<title>Аделіна — Мій прикорм</title>
+
 <link rel="manifest" href="./manifest.json">
 <meta name="theme-color" content="#f7dce6">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Аделіна">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<meta name="theme-color" content="#f8e8ee">
-<title>Аделіна — Мій прикорм</title>
-
 <style>
 :root{
-  --bg:#fff8fa;
-  --card:#ffffff;
-  --pink:#e9b8c8;
-  --pink-dark:#c9879d;
-  --pink-light:#f9e8ee;
-  --green:#b8d8c0;
-  --green-dark:#6e9b7b;
-  --yellow:#f5df9e;
-  --text:#51464a;
-  --muted:#9a8c91;
-  --danger:#d98d8d;
-  --shadow:0 4px 18px rgba(150,110,125,.10);
+  --pink:#f7dce6;
+  --pink2:#fff1f5;
+  --pink3:#eeb8cb;
+  --green:#dceee2;
+  --green2:#eff8f2;
+  --yellow:#fff0c9;
+  --blue:#dfeefa;
+  --purple:#e9e1f5;
+  --text:#4f4650;
+  --muted:#8d818a;
+  --white:#ffffff;
+  --danger:#f4c8c8;
+  --shadow:0 4px 18px rgba(120,90,105,.09);
   --radius:18px;
 }
 
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
 
 body{
   margin:0;
-  background:var(--bg);
+  background:#fffafc;
   color:var(--text);
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
@@ -46,52 +50,59 @@ button{
   cursor:pointer;
 }
 
+.app{
+  max-width:720px;
+  margin:auto;
+  padding-bottom:90px;
+}
+
 header{
-  padding:24px 18px 16px;
+  padding:22px 18px 14px;
   text-align:center;
+  background:linear-gradient(180deg,#fff5f8,#fffafc);
 }
 
 header h1{
   margin:0;
-  font-size:25px;
+  font-size:24px;
 }
 
 header p{
-  margin:6px 0 0;
+  margin:5px 0 0;
   color:var(--muted);
-  font-size:14px;
+  font-size:13px;
 }
 
 .tabs{
   display:flex;
-  overflow-x:auto;
   gap:7px;
-  padding:0 12px 12px;
-  scrollbar-width:none;
+  padding:8px 10px;
+  overflow-x:auto;
+  position:sticky;
+  top:0;
+  z-index:20;
+  background:rgba(255,250,252,.95);
+  backdrop-filter:blur(10px);
 }
 
-.tabs::-webkit-scrollbar{display:none}
-
 .tab{
-  flex:0 0 auto;
   border:0;
   background:#fff;
-  color:var(--text);
-  padding:10px 13px;
+  padding:9px 13px;
   border-radius:14px;
+  white-space:nowrap;
+  color:var(--muted);
   box-shadow:var(--shadow);
 }
 
 .tab.active{
-  background:var(--pink-light);
-  color:var(--pink-dark);
+  background:var(--pink);
+  color:var(--text);
   font-weight:600;
 }
 
 main{
-  max-width:900px;
-  margin:auto;
-  padding:0 12px 40px;
+  padding:10px 14px;
 }
 
 .section{
@@ -103,44 +114,89 @@ main{
 }
 
 .card{
-  background:var(--card);
+  background:#fff;
   border-radius:var(--radius);
   padding:16px;
   margin-bottom:12px;
   box-shadow:var(--shadow);
 }
 
+.hero{
+  background:linear-gradient(135deg,#fff0f5,#f7f0f7);
+}
+
+.hero-title{
+  font-size:19px;
+  font-weight:700;
+  margin-bottom:5px;
+}
+
+.muted{
+  color:var(--muted);
+  font-size:13px;
+}
+
 .progress-wrap{
-  margin-bottom:16px;
+  margin-top:14px;
 }
 
-.progress-top{
-  display:flex;
-  justify-content:space-between;
-  font-size:14px;
-  margin-bottom:7px;
-}
-
-.progress{
+.progress-line{
   height:10px;
-  background:#f1e7ea;
-  border-radius:20px;
+  background:#f2e9ed;
+  border-radius:10px;
   overflow:hidden;
 }
 
-.progress-bar{
+.progress-fill{
   height:100%;
-  background:var(--green);
-  border-radius:20px;
+  background:linear-gradient(90deg,#efc3d3,#dcb5e5);
+  border-radius:10px;
   transition:.3s;
+}
+
+.progress-text{
+  display:flex;
+  justify-content:space-between;
+  margin-top:7px;
+  font-size:13px;
+}
+
+.today-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.today-title strong{
+  font-size:17px;
+}
+
+.badge{
+  display:inline-block;
+  padding:4px 8px;
+  border-radius:10px;
+  font-size:11px;
+  margin:2px;
+}
+
+.badge-introduced{
+  background:var(--green);
+}
+
+.badge-allergen{
+  background:var(--yellow);
+}
+
+.badge-new{
+  background:var(--blue);
 }
 
 .search{
   width:100%;
-  border:1px solid #eee0e5;
-  border-radius:14px;
-  padding:12px 14px;
+  border:1px solid #eee3e8;
   background:white;
+  padding:12px 14px;
+  border-radius:14px;
   outline:none;
   margin-bottom:10px;
 }
@@ -149,113 +205,141 @@ main{
   display:flex;
   gap:7px;
   overflow-x:auto;
-  margin-bottom:14px;
-  scrollbar-width:none;
+  margin-bottom:12px;
 }
 
 .filter{
   border:0;
-  background:#f7eff2;
+  background:#f4edf1;
+  color:var(--muted);
   padding:8px 12px;
   border-radius:12px;
   white-space:nowrap;
-  color:var(--text);
 }
 
 .filter.active{
   background:var(--pink);
-  color:white;
-}
-
-.food-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-}
-
-@media(min-width:650px){
-  .food-grid{
-    grid-template-columns:repeat(3,1fr);
-  }
-}
-
-.food-card{
-  position:relative;
-  background:#fff;
-  border-radius:18px;
-  padding:13px;
-  box-shadow:var(--shadow);
-  min-height:145px;
-}
-
-.food-icon{
-  font-size:39px;
-  line-height:1;
-  margin-bottom:8px;
-}
-
-.food-name{
-  font-weight:600;
-  font-size:15px;
+  color:var(--text);
 }
 
 .category{
-  color:var(--muted);
-  font-size:12px;
-  margin-top:3px;
+  margin-bottom:10px;
+  overflow:hidden;
+  border-radius:17px;
+  background:#fff;
+  box-shadow:var(--shadow);
 }
 
-.badge{
-  display:inline-block;
-  margin-top:8px;
-  padding:4px 7px;
-  border-radius:9px;
-  font-size:11px;
-}
-
-.badge.done{
-  background:#e8f4eb;
-  color:var(--green-dark);
-}
-
-.badge.allergen{
-  background:#fff1d6;
-  color:#a77c32;
-}
-
-.food-actions{
+.category-head{
   display:flex;
-  gap:5px;
-  margin-top:10px;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 15px;
+  cursor:pointer;
 }
 
-.small-btn{
-  border:0;
-  border-radius:10px;
-  padding:7px 8px;
-  background:#f7eff2;
-  color:var(--text);
+.category-left{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.category-emoji{
+  font-size:25px;
+}
+
+.category-name{
+  font-weight:650;
+}
+
+.category-count{
   font-size:12px;
+  color:var(--muted);
+  margin-top:2px;
 }
 
-.small-btn.done{
-  background:#e4f1e7;
-  color:var(--green-dark);
+.arrow{
+  color:var(--muted);
+  transition:.2s;
 }
 
-.small-btn.delete{
-  color:var(--danger);
+.category.open .arrow{
+  transform:rotate(180deg);
+}
+
+.category-body{
+  display:none;
+  padding:0 10px 10px;
+}
+
+.category.open .category-body{
+  display:block;
+}
+
+.product{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  padding:12px 9px;
+  border-top:1px solid #f5edf0;
+}
+
+.product-icon{
+  width:42px;
+  height:42px;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--pink2);
+  font-size:22px;
+  flex-shrink:0;
+}
+
+.product-info{
+  flex:1;
+  min-width:0;
+}
+
+.product-name{
+  font-weight:600;
+}
+
+.product-meta{
+  margin-top:3px;
+  display:flex;
+  flex-wrap:wrap;
+}
+
+.product-arrow{
+  color:#c0b4bb;
 }
 
 .add-btn{
   width:100%;
   border:0;
   background:var(--pink);
-  color:white;
+  color:var(--text);
   padding:13px;
   border-radius:14px;
-  margin-bottom:14px;
   font-weight:600;
+  margin-top:5px;
+}
+
+.secondary-btn{
+  border:0;
+  background:#f3edf0;
+  color:var(--text);
+  padding:10px 13px;
+  border-radius:12px;
+}
+
+.danger-btn{
+  border:0;
+  background:var(--danger);
+  color:#6e4d4d;
+  padding:9px 12px;
+  border-radius:11px;
 }
 
 .form-group{
@@ -265,18 +349,18 @@ main{
 label{
   display:block;
   font-size:13px;
-  margin-bottom:5px;
-  color:#786c71;
+  color:var(--muted);
+  margin-bottom:6px;
 }
 
 input,select,textarea{
   width:100%;
-  border:1px solid #eadde1;
-  background:white;
-  border-radius:12px;
+  border:1px solid #eee3e8;
+  background:#fff;
+  border-radius:13px;
   padding:11px 12px;
-  outline:none;
   color:var(--text);
+  outline:none;
 }
 
 textarea{
@@ -284,101 +368,96 @@ textarea{
   resize:vertical;
 }
 
-.form-row{
-  display:grid;
-  grid-template-columns:1fr 1fr;
+.row{
+  display:flex;
+  gap:9px;
+}
+
+.row>*{
+  flex:1;
+}
+
+.check{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  color:var(--text);
+  font-size:14px;
+}
+
+.check input{
+  width:18px;
+  height:18px;
+}
+
+.diary-entry{
+  padding:13px;
+  border-radius:15px;
+  background:#fff;
+  margin-bottom:9px;
+  box-shadow:var(--shadow);
+}
+
+.entry-top{
+  display:flex;
+  justify-content:space-between;
   gap:10px;
 }
 
-.primary{
-  width:100%;
-  border:0;
-  border-radius:13px;
-  padding:12px;
-  background:var(--green);
-  color:#496853;
-  font-weight:600;
-}
-
-.secondary{
-  width:100%;
-  border:0;
-  border-radius:13px;
-  padding:12px;
-  background:#f4ecef;
-  color:var(--text);
-}
-
-.entry{
-  border-left:4px solid var(--pink);
-  padding:12px;
-  background:#fffafc;
-  border-radius:12px;
-  margin-top:9px;
-}
-
-.entry-date{
-  color:var(--muted);
-  font-size:12px;
-}
-
-.entry-title{
-  font-weight:600;
-  margin:4px 0;
+.entry-product{
+  font-weight:650;
 }
 
 .entry-actions{
   display:flex;
-  gap:6px;
-  margin-top:8px;
+  gap:5px;
 }
 
-.photo-preview{
-  max-width:100%;
-  max-height:180px;
-  border-radius:12px;
-  margin-top:8px;
+.small-btn{
+  border:0;
+  background:#f3edf0;
+  padding:6px 8px;
+  border-radius:9px;
+  font-size:12px;
 }
 
-.allergen-list{
-  display:grid;
-  gap:8px;
+.reaction{
+  display:inline-block;
+  margin-top:7px;
+  padding:5px 9px;
+  border-radius:10px;
+  background:#f8eef2;
+  font-size:12px;
 }
 
-.check-item{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  background:#fff;
-  padding:12px;
+.entry-photo{
+  width:100%;
+  max-height:230px;
+  object-fit:cover;
   border-radius:13px;
-  box-shadow:var(--shadow);
+  margin-top:9px;
 }
 
-.check-item input{
-  width:20px;
-  height:20px;
-}
-
-.calendar-head{
+.calendar-nav{
   display:flex;
-  justify-content:space-between;
   align-items:center;
+  justify-content:space-between;
   margin-bottom:12px;
 }
 
-.calendar-head button{
+.calendar-nav button{
   border:0;
-  background:#f7eff2;
-  border-radius:10px;
-  padding:8px 12px;
+  background:var(--pink2);
+  width:38px;
+  height:38px;
+  border-radius:12px;
 }
 
 .calendar-title{
-  font-weight:600;
+  font-weight:700;
 }
 
-.calendar{
+.calendar-grid{
   display:grid;
   grid-template-columns:repeat(7,1fr);
   gap:4px;
@@ -386,82 +465,95 @@ textarea{
 
 .weekday{
   text-align:center;
-  font-size:11px;
   color:var(--muted);
-  padding:5px 0;
+  font-size:11px;
+  padding:4px 0;
 }
 
 .day{
-  min-height:45px;
+  min-height:56px;
   border:0;
-  background:#fff;
-  border-radius:10px;
+  border-radius:12px;
+  background:#faf6f8;
+  padding:5px;
+  text-align:left;
   color:var(--text);
-  position:relative;
 }
 
 .day.empty{
   background:transparent;
 }
 
-.day.today{
-  outline:2px solid var(--pink);
+.day.has-entry{
+  background:#f5e3eb;
 }
 
-.day.has-entry{
-  background:#f8e8ee;
+.day.today{
+  outline:2px solid var(--pink3);
+}
+
+.day-number{
+  font-size:12px;
   font-weight:600;
 }
 
-.dot{
-  width:5px;
-  height:5px;
-  background:var(--green-dark);
-  border-radius:50%;
-  position:absolute;
-  bottom:5px;
-  left:50%;
-  transform:translateX(-50%);
+.day-products{
+  margin-top:4px;
+  font-size:9px;
+  color:var(--muted);
+  line-height:1.2;
 }
 
-.stat-grid{
+.stats-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:10px;
 }
 
 .stat{
-  background:white;
-  border-radius:16px;
+  background:#fff;
+  border-radius:17px;
   padding:16px;
   box-shadow:var(--shadow);
 }
 
 .stat-number{
-  font-size:28px;
+  font-size:25px;
   font-weight:700;
-  color:var(--pink-dark);
 }
 
 .stat-label{
-  font-size:12px;
   color:var(--muted);
+  font-size:12px;
+  margin-top:3px;
+}
+
+.category-stat{
+  margin-top:10px;
+}
+
+.category-stat-top{
+  display:flex;
+  justify-content:space-between;
+  font-size:13px;
+  margin-bottom:5px;
 }
 
 .empty{
-  color:var(--muted);
   text-align:center;
-  padding:20px;
+  padding:22px;
+  color:var(--muted);
+  font-size:14px;
 }
 
 .modal{
+  display:none;
   position:fixed;
   inset:0;
-  background:rgba(70,50,58,.35);
-  display:none;
+  z-index:100;
+  background:rgba(70,50,60,.32);
   align-items:flex-end;
   justify-content:center;
-  z-index:20;
 }
 
 .modal.show{
@@ -470,83 +562,108 @@ textarea{
 
 .modal-box{
   width:100%;
-  max-width:600px;
+  max-width:720px;
   max-height:90vh;
   overflow:auto;
   background:#fffafc;
   border-radius:24px 24px 0 0;
   padding:20px;
+  animation:up .2s ease;
 }
 
-.modal-header{
+@keyframes up{
+  from{transform:translateY(30px);opacity:.5}
+  to{transform:translateY(0);opacity:1}
+}
+
+.modal-head{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-bottom:15px;
+  margin-bottom:14px;
+}
+
+.modal-head h2{
+  margin:0;
+  font-size:20px;
 }
 
 .close{
   border:0;
-  background:#f4e9ed;
-  border-radius:10px;
-  width:34px;
-  height:34px;
+  background:#f3edf0;
+  width:35px;
+  height:35px;
+  border-radius:11px;
 }
 
-.product-detail-icon{
-  font-size:60px;
-  text-align:center;
-  margin:5px 0 10px;
+.detail-icon{
+  width:70px;
+  height:70px;
+  border-radius:22px;
+  background:var(--pink2);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:38px;
+  margin:5px auto 12px;
 }
 
-.detail-status{
+.detail-name{
   text-align:center;
-  margin-bottom:14px;
+  font-size:21px;
+  font-weight:700;
+}
+
+.detail-category{
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+  margin-top:4px;
 }
 
 .info-box{
   background:#fff;
-  border-radius:14px;
-  padding:13px;
-  margin-bottom:10px;
-}
-
-.backup-buttons{
-  display:grid;
-  gap:9px;
-}
-
-.danger{
-  background:#faeeee;
-  color:#ad6464;
-}
-
-.hidden{
-  display:none!important;
-}
-
-hr{
-  border:0;
-  border-top:1px solid #f0e5e8;
-  margin:16px 0;
-}
-
-.notice{
-  background:#fff7e5;
-  border-radius:13px;
+  border-radius:15px;
   padding:12px;
-  font-size:12px;
-  color:#806a3e;
-  margin-bottom:12px;
+  margin-top:10px;
+}
+
+.photo-input{
+  padding:9px;
+}
+
+footer{
+  text-align:center;
+  color:#b3a6ae;
+  font-size:11px;
+  padding:25px;
+}
+
+@media(min-width:600px){
+  main{
+    padding-left:20px;
+    padding-right:20px;
+  }
+
+  .modal{
+    align-items:center;
+  }
+
+  .modal-box{
+    border-radius:24px;
+    max-height:85vh;
+  }
 }
 </style>
 </head>
 
 <body>
 
+<div class="app">
+
 <header>
   <h1>🌸 Аделіна — Мій прикорм</h1>
-  <p>Мій маленький щоденник прикорму</p>
+  <p>Маленькі кроки до великих відкриттів 💗</p>
 </header>
 
 <nav class="tabs">
@@ -559,60 +676,77 @@ hr{
 
 <main>
 
-<!-- HOME -->
 <section id="home" class="section active">
 
-  <div class="card progress-wrap">
-    <div class="progress-top">
-      <span>Продукти введено</span>
-      <strong id="progressText">0%</strong>
-    </div>
-    <div class="progress">
-      <div class="progress-bar" id="progressBar"></div>
+  <div class="card hero">
+    <div class="hero-title">🌸 Прикорм Аделіни</div>
+    <div class="muted">Слідкуй за новими продуктами та реакціями в одному місці.</div>
+
+    <div class="progress-wrap">
+      <div class="progress-line">
+        <div id="progressFill" class="progress-fill"></div>
+      </div>
+
+      <div class="progress-text">
+        <span id="progressLabel">0 продуктів введено</span>
+        <strong id="progressPercent">0%</strong>
+      </div>
     </div>
   </div>
 
-  <button class="add-btn" onclick="openAddProduct()">
-    ➕ Додати власний продукт
-  </button>
+  <div class="card">
+    <div class="today-title">
+      <strong>🍼 Сьогодні</strong>
+      <span id="todayDate" class="muted"></span>
+    </div>
+
+    <div id="todayEntries" style="margin-top:12px;"></div>
+  </div>
 
   <input
-    class="search"
     id="searchInput"
-    placeholder="🔍 Пошук продукту..."
+    class="search"
+    placeholder="🔎 Пошук продукту..."
     oninput="renderFoods()"
   >
 
   <div class="filters">
     <button class="filter active" onclick="setFilter('all',this)">Усі</button>
     <button class="filter" onclick="setFilter('not',this)">Не введені</button>
-    <button class="filter" onclick="setFilter('done',this)">Введені</button>
+    <button class="filter" onclick="setFilter('yes',this)">Введені</button>
     <button class="filter" onclick="setFilter('allergen',this)">Алергени</button>
   </div>
 
-  <div id="foodGrid" class="food-grid"></div>
-
-</section>
-
-<!-- ALLERGENS -->
-<section id="allergens" class="section">
+  <div id="foodList"></div>
 
   <div class="card">
-    <h2>🥜 Алергени</h2>
-    <p style="color:var(--muted);font-size:13px">
-      Відмічай продукти, які вже були введені та які хочеш окремо відстежувати.
-    </p>
+    <button class="add-btn" onclick="openCustomModal()">
+      ➕ Додати власний продукт
+    </button>
   </div>
-
-  <div id="allergenList" class="allergen-list"></div>
 
 </section>
 
-<!-- DIARY -->
+
+<section id="allergens" class="section">
+
+  <div class="card hero">
+    <div class="hero-title">🥜 Алергени</div>
+    <div class="muted">
+      Тут можна окремо позначати продукти, які потребують особливої уваги.
+    </div>
+  </div>
+
+  <div id="allergenList"></div>
+
+</section>
+
+
 <section id="diary" class="section">
 
   <div class="card">
-    <h2>📖 Щоденник</h2>
+
+    <div class="hero-title">📖 Новий запис</div>
 
     <div class="form-group">
       <label>Дата</label>
@@ -620,21 +754,23 @@ hr{
     </div>
 
     <div class="form-group">
-      <label>Продукт зі списку</label>
-      <select id="productSelect" onchange="productSelectChanged()">
-        <option value="">— Обрати продукт —</option>
+      <label>Продукт</label>
+
+      <select id="diaryProduct" onchange="handleDiaryProductChange()">
+        <option value="">Оберіть продукт</option>
       </select>
     </div>
 
     <div class="form-group">
-      <label>Або введи власний продукт</label>
-      <input id="diaryProduct" placeholder="Наприклад: авокадо">
+      <label>Якщо продукту немає у списку</label>
+      <input id="diaryCustomProduct" placeholder="Наприклад: авокадо з бананом">
     </div>
 
-    <div class="form-row">
+    <div class="row">
+
       <div class="form-group">
         <label>Кількість</label>
-        <input id="diaryAmount" placeholder="Наприклад: 2 ч.л.">
+        <input id="diaryAmount" placeholder="1–2 ложечки">
       </div>
 
       <div class="form-group">
@@ -646,252 +782,244 @@ hr{
           <option>Була реакція ⚠️</option>
         </select>
       </div>
+
     </div>
 
     <div class="form-group">
       <label>Нотатки</label>
-      <textarea id="diaryNotes" placeholder="Як Аделіна їла продукт?"></textarea>
+      <textarea id="diaryNotes" placeholder="Як їла, чи сподобався продукт, що помітила..."></textarea>
     </div>
 
     <div class="form-group">
       <label>Фото</label>
-      <input type="file" id="diaryPhoto" accept="image/*">
+      <input class="photo-input" type="file" id="diaryPhoto" accept="image/*">
     </div>
 
-    <button class="primary" onclick="saveDiaryEntry()">
+    <button class="add-btn" onclick="saveDiaryEntry()">
       💾 Зберегти запис
     </button>
 
-    <input type="hidden" id="editingEntryId">
-
   </div>
 
-  <div id="diaryEntries"></div>
+  <div id="diaryList"></div>
 
 </section>
 
-<!-- CALENDAR -->
+
 <section id="calendar" class="section">
 
   <div class="card">
 
-    <div class="calendar-head">
+    <div class="calendar-nav">
       <button onclick="changeMonth(-1)">‹</button>
-      <div class="calendar-title" id="calendarTitle"></div>
+      <div id="calendarTitle" class="calendar-title"></div>
       <button onclick="changeMonth(1)">›</button>
     </div>
 
-    <div class="calendar">
-      <div class="weekday">Пн</div>
-      <div class="weekday">Вт</div>
-      <div class="weekday">Ср</div>
-      <div class="weekday">Чт</div>
-      <div class="weekday">Пт</div>
-      <div class="weekday">Сб</div>
-      <div class="weekday">Нд</div>
-    </div>
-
-    <div class="calendar" id="calendarDays"></div>
+    <div class="calendar-grid" id="calendarGrid"></div>
 
   </div>
 
-  <div id="selectedDateEntries"></div>
+  <div id="selectedDay"></div>
 
 </section>
 
-<!-- STATS -->
+
 <section id="stats" class="section">
 
-  <div class="card">
-    <h2>📊 Статистика</h2>
-    <p style="color:var(--muted);font-size:13px">
-      Маленькі кроки — велика пригода 🌸
-    </p>
+  <div class="card hero">
+    <div class="hero-title">📊 Статистика</div>
+    <div class="muted">Маленький прогрес Аделіни 🌸</div>
   </div>
 
-  <div class="stat-grid">
+  <div class="stats-grid">
+
     <div class="stat">
-      <div class="stat-number" id="statIntroduced">0</div>
+      <div id="statIntroduced" class="stat-number">0</div>
       <div class="stat-label">Введено продуктів</div>
     </div>
 
     <div class="stat">
-      <div class="stat-number" id="statRemaining">0</div>
+      <div id="statRemaining" class="stat-number">0</div>
       <div class="stat-label">Ще не введено</div>
     </div>
 
     <div class="stat">
-      <div class="stat-number" id="statAllergens">0</div>
-      <div class="stat-label">Алергенів відмічено</div>
+      <div id="statAllergens" class="stat-number">0</div>
+      <div class="stat-label">Алергенів позначено</div>
     </div>
 
     <div class="stat">
-      <div class="stat-number" id="statDiary">0</div>
+      <div id="statDiary" class="stat-number">0</div>
       <div class="stat-label">Записів у щоденнику</div>
     </div>
+
   </div>
 
-  <div class="card" style="margin-top:12px">
-    <h3>💾 Резервна копія</h3>
+  <div class="card" style="margin-top:12px;">
+    <div class="hero-title">🥕 Прогрес за категоріями</div>
+    <div id="categoryStats"></div>
+  </div>
 
-    <div class="notice">
-      Дані зберігаються у цьому браузері на цьому пристрої.
-      Рекомендується час від часу робити резервну копію.
+  <div class="card">
+
+    <div class="hero-title">💾 Резервна копія</div>
+
+    <div class="muted" style="margin:6px 0 12px;">
+      Збережи дані програми у файл, щоб мати резервну копію.
     </div>
 
-    <div class="backup-buttons">
-      <button class="primary" onclick="exportBackup()">
-        📤 Зберегти резервну копію
-      </button>
-
-      <button class="secondary" onclick="document.getElementById('backupFile').click()">
-        📥 Відновити з резервної копії
-      </button>
-
-      <input
-        type="file"
-        id="backupFile"
-        class="hidden"
-        accept=".json,application/json"
-        onchange="importBackup(event)"
-      >
+    <div class="row">
+      <button class="secondary-btn" onclick="exportBackup()">⬇️ Експорт</button>
+      <label class="secondary-btn" style="text-align:center;cursor:pointer;">
+        ⬆️ Імпорт
+        <input type="file" accept=".json" onchange="importBackup(event)" style="display:none;">
+      </label>
     </div>
+
   </div>
 
 </section>
 
 </main>
 
-<!-- PRODUCT MODAL -->
-<div class="modal" id="productModal" onclick="closeModalOutside(event)">
-  <div class="modal-box">
+<footer>
+  🌸 Аделіна — Мій прикорм
+</footer>
 
-    <div class="modal-header">
-      <h2 id="modalProductName">Продукт</h2>
-      <button class="close" onclick="closeProductModal()">✕</button>
-    </div>
-
-    <div class="product-detail-icon" id="modalProductIcon">🥦</div>
-
-    <div class="detail-status" id="modalProductStatus"></div>
-
-    <div id="modalProductInfo"></div>
-
-    <hr>
-
-    <h3>📖 Записи у щоденнику</h3>
-    <div id="modalProductEntries"></div>
-
-  </div>
 </div>
 
-<!-- ADD PRODUCT MODAL -->
-<div class="modal" id="addProductModal" onclick="closeAddOutside(event)">
+
+<!-- PRODUCT MODAL -->
+
+<div id="productModal" class="modal" onclick="closeModalOutside(event,'productModal')">
+
   <div class="modal-box">
 
-    <div class="modal-header">
-      <h2>➕ Новий продукт</h2>
-      <button class="close" onclick="closeAddProduct()">✕</button>
+    <div class="modal-head">
+      <h2>Продукт</h2>
+      <button class="close" onclick="closeModal('productModal')">✕</button>
+    </div>
+
+    <div id="productDetail"></div>
+
+  </div>
+
+</div>
+
+
+<!-- CUSTOM PRODUCT MODAL -->
+
+<div id="customModal" class="modal" onclick="closeModalOutside(event,'customModal')">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+      <h2>➕ Власний продукт</h2>
+      <button class="close" onclick="closeModal('customModal')">✕</button>
     </div>
 
     <div class="form-group">
-      <label>Назва продукту</label>
-      <input id="newProductName" placeholder="Наприклад: Ківі">
+      <label>Назва</label>
+      <input id="customName" placeholder="Наприклад: Пастернак">
     </div>
 
     <div class="form-group">
       <label>Категорія</label>
-      <select id="newProductCategory">
-        <option>Овочі</option>
-        <option>Фрукти та ягоди</option>
-        <option>Крупи та каші</option>
-        <option>М'ясо</option>
-        <option>Риба та морепродукти</option>
-        <option>Яйця</option>
-        <option>Молочні продукти</option>
-        <option>Бобові та горіхи</option>
-        <option>Інше</option>
+      <select id="customCategory">
+        <option>🥦 Овочі</option>
+        <option>🍎 Фрукти та ягоди</option>
+        <option>🌾 Крупи та каші</option>
+        <option>🥩 М'ясо</option>
+        <option>🐟 Риба та морепродукти</option>
+        <option>🥚 Яйця</option>
+        <option>🥛 Молочні продукти</option>
+        <option>🥜 Бобові та горіхи</option>
+        <option>🍽️ Інше</option>
       </select>
     </div>
 
     <div class="form-group">
       <label>Емодзі</label>
-      <input id="newProductIcon" value="🍽️" maxlength="4">
+      <input id="customEmoji" value="🍽️" maxlength="2">
     </div>
 
-    <div class="check-item" style="margin-bottom:14px">
-      <input type="checkbox" id="newProductAllergen">
-      <span>Це алерген</span>
-    </div>
+    <label class="check">
+      <input type="checkbox" id="customAllergen">
+      Це алерген
+    </label>
 
-    <button class="primary" onclick="addCustomProduct()">
-      Додати продукт
+    <button class="add-btn" style="margin-top:15px;" onclick="saveCustomFood()">
+      💾 Додати продукт
     </button>
 
   </div>
+
 </div>
+
 
 <script>
 
 const defaultFoods = [
 
-  {name:"Кабачок",category:"Овочі",icon:"🥒",allergen:false},
-  {name:"Броколі",category:"Овочі",icon:"🥦",allergen:false},
-  {name:"Цвітна капуста",category:"Овочі",icon:"🥦",allergen:false},
-  {name:"Морква",category:"Овочі",icon:"🥕",allergen:false},
-  {name:"Гарбуз",category:"Овочі",icon:"🎃",allergen:false},
-  {name:"Батат",category:"Овочі",icon:"🍠",allergen:false},
-  {name:"Картопля",category:"Овочі",icon:"🥔",allergen:false},
-  {name:"Зелений горошок",category:"Овочі",icon:"🫛",allergen:false},
-  {name:"Авокадо",category:"Овочі",icon:"🥑",allergen:false},
+  {name:"Кабачок",category:"🥦 Овочі",emoji:"🥒",allergen:false},
+  {name:"Броколі",category:"🥦 Овочі",emoji:"🥦",allergen:false},
+  {name:"Цвітна капуста",category:"🥦 Овочі",emoji:"🥦",allergen:false},
+  {name:"Морква",category:"🥦 Овочі",emoji:"🥕",allergen:false},
+  {name:"Гарбуз",category:"🥦 Овочі",emoji:"🎃",allergen:false},
+  {name:"Батат",category:"🥦 Овочі",emoji:"🍠",allergen:false},
+  {name:"Картопля",category:"🥦 Овочі",emoji:"🥔",allergen:false},
+  {name:"Зелений горошок",category:"🥦 Овочі",emoji:"🫛",allergen:false},
+  {name:"Авокадо",category:"🥦 Овочі",emoji:"🥑",allergen:false},
 
-  {name:"Яблуко",category:"Фрукти та ягоди",icon:"🍎",allergen:false},
-  {name:"Груша",category:"Фрукти та ягоди",icon:"🍐",allergen:false},
-  {name:"Банан",category:"Фрукти та ягоди",icon:"🍌",allergen:false},
-  {name:"Персик",category:"Фрукти та ягоди",icon:"🍑",allergen:false},
-  {name:"Нектарин",category:"Фрукти та ягоди",icon:"🍑",allergen:false},
-  {name:"Абрикос",category:"Фрукти та ягоди",icon:"🍑",allergen:false},
-  {name:"Слива",category:"Фрукти та ягоди",icon:"🫐",allergen:false},
-  {name:"Манго",category:"Фрукти та ягоди",icon:"🥭",allergen:false},
-  {name:"Полуниця",category:"Фрукти та ягоди",icon:"🍓",allergen:true},
-  {name:"Малина",category:"Фрукти та ягоди",icon:"🫐",allergen:true},
-  {name:"Чорниця",category:"Фрукти та ягоди",icon:"🫐",allergen:false},
+  {name:"Яблуко",category:"🍎 Фрукти та ягоди",emoji:"🍎",allergen:false},
+  {name:"Груша",category:"🍎 Фрукти та ягоди",emoji:"🍐",allergen:false},
+  {name:"Банан",category:"🍎 Фрукти та ягоди",emoji:"🍌",allergen:false},
+  {name:"Персик",category:"🍎 Фрукти та ягоди",emoji:"🍑",allergen:false},
+  {name:"Нектарин",category:"🍎 Фрукти та ягоди",emoji:"🍑",allergen:false},
+  {name:"Абрикос",category:"🍎 Фрукти та ягоди",emoji:"🍑",allergen:false},
+  {name:"Слива",category:"🍎 Фрукти та ягоди",emoji:"🫐",allergen:false},
+  {name:"Манго",category:"🍎 Фрукти та ягоди",emoji:"🥭",allergen:false},
+  {name:"Полуниця",category:"🍎 Фрукти та ягоди",emoji:"🍓",allergen:true},
+  {name:"Малина",category:"🍎 Фрукти та ягоди",emoji:"🫐",allergen:true},
+  {name:"Чорниця",category:"🍎 Фрукти та ягоди",emoji:"🫐",allergen:false},
 
-  {name:"Рис",category:"Крупи та каші",icon:"🍚",allergen:false},
-  {name:"Гречка",category:"Крупи та каші",icon:"🌾",allergen:false},
-  {name:"Вівсянка",category:"Крупи та каші",icon:"🥣",allergen:false},
-  {name:"Кукурудзяна крупа",category:"Крупи та каші",icon:"🌽",allergen:false},
-  {name:"Пшоно",category:"Крупи та каші",icon:"🌾",allergen:false},
-  {name:"Пшениця",category:"Крупи та каші",icon:"🌾",allergen:true},
-  {name:"Ячмінь",category:"Крупи та каші",icon:"🌾",allergen:true},
+  {name:"Рис",category:"🌾 Крупи та каші",emoji:"🍚",allergen:false},
+  {name:"Гречка",category:"🌾 Крупи та каші",emoji:"🌾",allergen:false},
+  {name:"Вівсянка",category:"🌾 Крупи та каші",emoji:"🥣",allergen:false},
+  {name:"Кукурудзяна крупа",category:"🌾 Крупи та каші",emoji:"🌽",allergen:false},
+  {name:"Пшоно",category:"🌾 Крупи та каші",emoji:"🌾",allergen:false},
+  {name:"Пшениця",category:"🌾 Крупи та каші",emoji:"🌾",allergen:true},
+  {name:"Ячмінь",category:"🌾 Крупи та каші",emoji:"🌾",allergen:true},
 
-  {name:"Курка",category:"М'ясо",icon:"🍗",allergen:false},
-  {name:"Індичка",category:"М'ясо",icon:"🍗",allergen:false},
-  {name:"Кролик",category:"М'ясо",icon:"🐇",allergen:false},
-  {name:"Яловичина",category:"М'ясо",icon:"🥩",allergen:false},
-  {name:"Телятина",category:"М'ясо",icon:"🥩",allergen:false},
+  {name:"Курка",category:"🥩 М'ясо",emoji:"🍗",allergen:false},
+  {name:"Індичка",category:"🥩 М'ясо",emoji:"🍗",allergen:false},
+  {name:"Кролик",category:"🥩 М'ясо",emoji:"🐇",allergen:false},
+  {name:"Яловичина",category:"🥩 М'ясо",emoji:"🥩",allergen:false},
+  {name:"Телятина",category:"🥩 М'ясо",emoji:"🥩",allergen:false},
 
-  {name:"Лосось",category:"Риба та морепродукти",icon:"🐟",allergen:true},
-  {name:"Тріска",category:"Риба та морепродукти",icon:"🐟",allergen:true},
-  {name:"Хек",category:"Риба та морепродукти",icon:"🐟",allergen:true},
-  {name:"Форель",category:"Риба та морепродукти",icon:"🐟",allergen:true},
-  {name:"Креветки",category:"Риба та морепродукти",icon:"🦐",allergen:true},
+  {name:"Лосось",category:"🐟 Риба та морепродукти",emoji:"🐟",allergen:true},
+  {name:"Тріска",category:"🐟 Риба та морепродукти",emoji:"🐟",allergen:true},
+  {name:"Хек",category:"🐟 Риба та морепродукти",emoji:"🐟",allergen:true},
+  {name:"Форель",category:"🐟 Риба та морепродукти",emoji:"🐟",allergen:true},
+  {name:"Креветки",category:"🐟 Риба та морепродукти",emoji:"🦐",allergen:true},
 
-  {name:"Куряче яйце",category:"Яйця",icon:"🥚",allergen:true},
+  {name:"Куряче яйце",category:"🥚 Яйця",emoji:"🥚",allergen:true},
 
-  {name:"Натуральний йогурт",category:"Молочні продукти",icon:"🥛",allergen:false},
-  {name:"Сир",category:"Молочні продукти",icon:"🧀",allergen:false},
-  {name:"Коров'яче молоко",category:"Молочні продукти",icon:"🥛",allergen:true},
+  {name:"Натуральний йогурт",category:"🥛 Молочні продукти",emoji:"🥛",allergen:false},
+  {name:"Сир",category:"🥛 Молочні продукти",emoji:"🧀",allergen:false},
+  {name:"Коров'яче молоко",category:"🥛 Молочні продукти",emoji:"🥛",allergen:true},
 
-  {name:"Чечевиця",category:"Бобові та горіхи",icon:"🫘",allergen:false},
-  {name:"Нут",category:"Бобові та горіхи",icon:"🫘",allergen:false},
-  {name:"Арахіс",category:"Бобові та горіхи",icon:"🥜",allergen:true},
-  {name:"Мигдаль",category:"Бобові та горіхи",icon:"🌰",allergen:true},
-  {name:"Кеш'ю",category:"Бобові та горіхи",icon:"🌰",allergen:true},
-  {name:"Волоський горіх",category:"Бобові та горіхи",icon:"🌰",allergen:true}
+  {name:"Чечевиця",category:"🥜 Бобові та горіхи",emoji:"🫘",allergen:false},
+  {name:"Нут",category:"🥜 Бобові та горіхи",emoji:"🫘",allergen:false},
+  {name:"Арахіс",category:"🥜 Бобові та горіхи",emoji:"🥜",allergen:true},
+  {name:"Мигдаль",category:"🥜 Бобові та горіхи",emoji:"🌰",allergen:true},
+  {name:"Кеш'ю",category:"🥜 Бобові та горіхи",emoji:"🥜",allergen:true},
+  {name:"Волоський горіх",category:"🥜 Бобові та горіхи",emoji:"🌰",allergen:true}
+
 ];
 
-const allergenNames = [
+const defaultAllergens = [
   "Куряче яйце",
   "Арахіс",
   "Мигдаль",
@@ -909,7 +1037,6 @@ const allergenNames = [
   "Малина"
 ];
 
-/* Existing version 5 data is preserved */
 let introducedFoods =
   JSON.parse(localStorage.getItem("introducedFoods") || "[]");
 
@@ -919,16 +1046,17 @@ let introducedAllergens =
 let diaryEntries =
   JSON.parse(localStorage.getItem("diaryEntries") || "[]");
 
-/* New version 6 data */
 let customFoods =
   JSON.parse(localStorage.getItem("customFoods") || "[]");
 
 let foodDates =
   JSON.parse(localStorage.getItem("foodDates") || "{}");
 
-let currentFilter = "all";
+let filterMode="all";
 
-let calendarDate = new Date();
+let calendarDate=new Date();
+
+let openCategories={};
 
 function saveData(){
 
@@ -958,66 +1086,504 @@ function saveData(){
   );
 }
 
+
 function allFoods(){
+
   return [...defaultFoods,...customFoods];
+
 }
 
-function escapeHtml(text){
 
-  return String(text)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
+function isIntroduced(name){
+
+  return introducedFoods.includes(name);
+
 }
+
+
+function isAllergen(name){
+
+  const food=allFoods().find(f=>f.name===name);
+
+  return !!(
+    (food && food.allergen) ||
+    introducedAllergens.includes(name)
+  );
+
+}
+
+
+function escapeHtml(value){
+
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+function escapeQuotes(value){
+
+  return String(value ?? "")
+    .replace(/\\/g,"\\\\")
+    .replace(/'/g,"\\'");
+
+}
+
+
+function formatDate(date){
+
+  if(!date) return "";
+
+  const d=new Date(date+"T12:00:00");
+
+  return d.toLocaleDateString("uk-UA",{
+    day:"numeric",
+    month:"long",
+    year:"numeric"
+  });
+
+}
+
 
 function todayString(){
 
-  const d = new Date();
+  const d=new Date();
 
-  return d.getFullYear()+"-"+
-    String(d.getMonth()+1).padStart(2,"0")+"-"+
-    String(d.getDate()).padStart(2,"0");
+  const y=d.getFullYear();
+  const m=String(d.getMonth()+1).padStart(2,"0");
+  const day=String(d.getDate()).padStart(2,"0");
+
+  return `${y}-${m}-${day}`;
+
 }
 
-function isIntroduced(name){
-  return introducedFoods.includes(name);
+
+function showTab(id,button){
+
+  document.querySelectorAll(".section")
+    .forEach(s=>s.classList.remove("active"));
+
+  document.getElementById(id)
+    .classList.add("active");
+
+  document.querySelectorAll(".tab")
+    .forEach(t=>t.classList.remove("active"));
+
+  if(button) button.classList.add("active");
+
+  if(id==="home") renderHome();
+  if(id==="allergens") renderAllergens();
+  if(id==="diary") renderDiary();
+  if(id==="calendar") renderCalendar();
+  if(id==="stats") renderStats();
+
 }
 
-function isAllergenMarked(name){
-  return introducedAllergens.includes(name);
+
+function setFilter(mode,button){
+
+  filterMode=mode;
+
+  document.querySelectorAll(".filter")
+    .forEach(b=>b.classList.remove("active"));
+
+  button.classList.add("active");
+
+  renderFoods();
+
 }
 
-function setIntroduced(name){
+
+function renderHome(){
+
+  updateProgress();
+
+  renderFoods();
+
+  renderToday();
+
+  document.getElementById("todayDate").textContent =
+    new Date().toLocaleDateString("uk-UA",{
+      day:"numeric",
+      month:"long"
+    });
+
+}
+
+
+function updateProgress(){
+
+  const foods=allFoods();
+
+  const introduced=foods.filter(f=>isIntroduced(f.name)).length;
+
+  const percent=foods.length
+    ? Math.round(introduced/foods.length*100)
+    : 0;
+
+  document.getElementById("progressFill").style.width=percent+"%";
+
+  document.getElementById("progressLabel").textContent =
+    `${introduced} з ${foods.length} продуктів введено`;
+
+  document.getElementById("progressPercent").textContent =
+    percent+"%";
+
+}
+
+
+function renderToday(){
+
+  const today=todayString();
+
+  const entries=diaryEntries
+    .filter(e=>e.date===today)
+    .sort((a,b)=>b.id-a.id);
+
+  const box=document.getElementById("todayEntries");
+
+  if(!entries.length){
+
+    box.innerHTML=`
+      <div class="empty">
+        Сьогодні ще немає записів 🌸
+      </div>
+    `;
+
+    return;
+  }
+
+  box.innerHTML=entries.map(e=>`
+
+    <div class="diary-entry">
+
+      <div class="entry-top">
+        <div>
+          <div class="entry-product">
+            ${escapeHtml(e.product)}
+          </div>
+
+          ${e.amount
+            ? `<div class="muted">${escapeHtml(e.amount)}</div>`
+            : ""
+          }
+        </div>
+
+        <span class="reaction">
+          ${escapeHtml(e.reaction)}
+        </span>
+      </div>
+
+    </div>
+
+  `).join("");
+
+}
+
+
+function getFilteredFoods(){
+
+  const search=
+    document.getElementById("searchInput")
+      .value
+      .trim()
+      .toLowerCase();
+
+  return allFoods().filter(food=>{
+
+    if(search &&
+       !food.name.toLowerCase().includes(search)){
+      return false;
+    }
+
+    if(filterMode==="not" && isIntroduced(food.name)){
+      return false;
+    }
+
+    if(filterMode==="yes" && !isIntroduced(food.name)){
+      return false;
+    }
+
+    if(filterMode==="allergen" && !isAllergen(food.name)){
+      return false;
+    }
+
+    return true;
+
+  });
+
+}
+
+
+function renderFoods(){
+
+  const foods=getFilteredFoods();
+
+  const groups={};
+
+  foods.forEach(food=>{
+
+    if(!groups[food.category]){
+      groups[food.category]=[];
+    }
+
+    groups[food.category].push(food);
+
+  });
+
+  const list=document.getElementById("foodList");
+
+  if(!foods.length){
+
+    list.innerHTML=`
+      <div class="card empty">
+        Нічого не знайдено 🌸
+      </div>
+    `;
+
+    return;
+  }
+
+  list.innerHTML=Object.entries(groups).map(([category,items])=>{
+
+    const opened =
+      openCategories[category] !== false;
+
+    const introducedCount =
+      items.filter(f=>isIntroduced(f.name)).length;
+
+    return `
+
+      <div class="category ${opened?"open":""}">
+
+        <div class="category-head"
+             onclick="toggleCategory('${escapeQuotes(category)}')">
+
+          <div class="category-left">
+
+            <div class="category-emoji">
+              ${category.split(" ")[0]}
+            </div>
+
+            <div>
+              <div class="category-name">
+                ${escapeHtml(category.replace(/^[^\s]+\s/,""))}
+              </div>
+
+              <div class="category-count">
+                ${introducedCount} / ${items.length} введено
+              </div>
+            </div>
+
+          </div>
+
+          <div class="arrow">⌄</div>
+
+        </div>
+
+        <div class="category-body">
+
+          ${items.map(food=>`
+
+            <div class="product"
+                 onclick="openProduct('${escapeQuotes(food.name)}')">
+
+              <div class="product-icon">
+                ${food.emoji}
+              </div>
+
+              <div class="product-info">
+
+                <div class="product-name">
+                  ${escapeHtml(food.name)}
+                </div>
+
+                <div class="product-meta">
+
+                  ${isIntroduced(food.name)
+                    ? `<span class="badge badge-introduced">✓ Введено</span>`
+                    : `<span class="badge badge-new">Нове</span>`
+                  }
+
+                  ${isAllergen(food.name)
+                    ? `<span class="badge badge-allergen">⚠️ Алерген</span>`
+                    : ""
+                  }
+
+                </div>
+
+              </div>
+
+              <div class="product-arrow">›</div>
+
+            </div>
+
+          `).join("")}
+
+        </div>
+
+      </div>
+
+    `;
+
+  }).join("");
+
+}
+
+
+function toggleCategory(category){
+
+  openCategories[category] =
+    openCategories[category] === false;
+
+  renderFoods();
+
+}
+
+
+function openProduct(name){
+
+  const food=allFoods().find(f=>f.name===name);
+
+  if(!food) return;
+
+  const entries=diaryEntries
+    .filter(e=>e.product===name)
+    .sort((a,b)=>b.id-a.id);
+
+  const firstDate=foodDates[name];
+
+  const custom=customFoods.some(f=>f.name===name);
+
+  document.getElementById("productDetail").innerHTML=`
+
+    <div class="detail-icon">${food.emoji}</div>
+
+    <div class="detail-name">
+      ${escapeHtml(food.name)}
+    </div>
+
+    <div class="detail-category">
+      ${escapeHtml(food.category)}
+    </div>
+
+    <div style="text-align:center;margin-top:10px;">
+
+      ${isIntroduced(name)
+        ? `<span class="badge badge-introduced">✓ Введено</span>`
+        : `<span class="badge badge-new">Ще не введено</span>`
+      }
+
+      ${isAllergen(name)
+        ? `<span class="badge badge-allergen">⚠️ Алерген</span>`
+        : ""
+      }
+
+    </div>
+
+    <div class="info-box">
+
+      <strong>📅 Перше введення</strong>
+
+      <div class="muted" style="margin-top:4px;">
+        ${firstDate
+          ? formatDate(firstDate)
+          : "Ще немає дати"
+        }
+      </div>
+
+    </div>
+
+    <div class="info-box">
+
+      <strong>📖 Записи у щоденнику</strong>
+
+      <div style="margin-top:8px;">
+
+        ${entries.length
+          ? entries.map(e=>`
+
+            <div style="padding:8px 0;border-bottom:1px solid #f4edf0;">
+
+              <strong>${formatDate(e.date)}</strong>
+
+              ${e.amount
+                ? `<div class="muted">${escapeHtml(e.amount)}</div>`
+                : ""
+              }
+
+              <div class="reaction">
+                ${escapeHtml(e.reaction)}
+              </div>
+
+              ${e.notes
+                ? `<div class="muted" style="margin-top:4px;">
+                    ${escapeHtml(e.notes)}
+                   </div>`
+                : ""
+              }
+
+            </div>
+
+          `).join("")
+          : `<div class="muted">Записів ще немає.</div>`
+        }
+
+      </div>
+
+    </div>
+
+    ${custom
+      ? `
+        <button class="danger-btn"
+                style="width:100%;margin-top:12px;"
+                onclick="deleteCustomFood('${escapeQuotes(name)}')">
+          🗑 Видалити власний продукт
+        </button>
+      `
+      : ""
+    }
+
+  `;
+
+  document.getElementById("productModal")
+    .classList.add("show");
+
+}
+
+
+function markIntroduced(name){
 
   if(!introducedFoods.includes(name)){
 
     introducedFoods.push(name);
 
-    if(!foodDates[name]){
-      foodDates[name] = todayString();
-    }
+  }
 
-  }else{
+  if(!foodDates[name]){
 
-    introducedFoods =
-      introducedFoods.filter(x => x !== name);
+    foodDates[name]=todayString();
 
-    delete foodDates[name];
   }
 
   saveData();
 
-  renderAll();
+  renderHome();
+  renderStats();
+
 }
 
-function setAllergen(name){
+
+function toggleAllergen(name){
 
   if(introducedAllergens.includes(name)){
 
-    introducedAllergens =
-      introducedAllergens.filter(x => x !== name);
+    introducedAllergens=
+      introducedAllergens.filter(x=>x!==name);
 
   }else{
 
@@ -1027,903 +1593,739 @@ function setAllergen(name){
 
   saveData();
 
-  renderAll();
+  renderAllergens();
+  renderHome();
+  renderStats();
+
 }
 
-function setFilter(filter,button){
-
-  currentFilter = filter;
-
-  document.querySelectorAll(".filter")
-    .forEach(b => b.classList.remove("active"));
-
-  button.classList.add("active");
-
-  renderFoods();
-}
-
-function renderFoods(){
-
-  const grid = document.getElementById("foodGrid");
-
-  const query =
-    document.getElementById("searchInput").value
-      .trim()
-      .toLowerCase();
-
-  let foods = allFoods();
-
-  foods = foods.filter(food => {
-
-    const matchesSearch =
-      food.name.toLowerCase().includes(query);
-
-    if(!matchesSearch) return false;
-
-    if(currentFilter === "not")
-      return !isIntroduced(food.name);
-
-    if(currentFilter === "done")
-      return isIntroduced(food.name);
-
-    if(currentFilter === "allergen")
-      return food.allergen || isAllergenMarked(food.name);
-
-    return true;
-  });
-
-  if(!foods.length){
-
-    grid.innerHTML =
-      `<div class="empty" style="grid-column:1/-1">
-        Нічого не знайдено 🌸
-      </div>`;
-
-    return;
-  }
-
-  grid.innerHTML = foods.map(food => {
-
-    const done = isIntroduced(food.name);
-    const allergen =
-      food.allergen || isAllergenMarked(food.name);
-
-    const custom =
-      customFoods.some(x => x.name === food.name);
-
-    return `
-      <div class="food-card">
-
-        <div
-          onclick="openProduct('${escapeQuotes(food.name)}')"
-          style="cursor:pointer"
-        >
-
-          <div class="food-icon">${food.icon}</div>
-
-          <div class="food-name">
-            ${escapeHtml(food.name)}
-          </div>
-
-          <div class="category">
-            ${escapeHtml(food.category)}
-          </div>
-
-          ${allergen
-            ? `<span class="badge allergen">🥜 Алерген</span>`
-            : ""}
-
-          ${done
-            ? `<span class="badge done">✓ Введено</span>`
-            : ""}
-        </div>
-
-        <div class="food-actions">
-
-          <button
-            class="small-btn ${done ? "done":""}"
-            onclick="setIntroduced('${escapeQuotes(food.name)}')"
-          >
-            ${done ? "✓ Введено":"Ввести"}
-          </button>
-
-          ${allergen
-            ? `<button
-                 class="small-btn"
-                 onclick="setAllergen('${escapeQuotes(food.name)}')"
-               >
-                 ${isAllergenMarked(food.name) ? "✓":"🥜"}
-               </button>`
-            : ""}
-
-          ${custom
-            ? `<button
-                 class="small-btn delete"
-                 onclick="deleteCustomProduct('${escapeQuotes(food.name)}')"
-               >
-                 🗑
-               </button>`
-            : ""}
-
-        </div>
-
-      </div>
-    `;
-
-  }).join("");
-}
-
-function escapeQuotes(value){
-
-  return String(value)
-    .replaceAll("\\","\\\\")
-    .replaceAll("'","\\'");
-}
 
 function renderAllergens(){
 
-  const container =
-    document.getElementById("allergenList");
+  const names=[...new Set([
+    ...defaultAllergens,
+    ...customFoods
+      .filter(f=>f.allergen)
+      .map(f=>f.name)
+  ])];
 
-  container.innerHTML = allergenNames.map(name => {
+  const box=document.getElementById("allergenList");
 
-    const checked =
-      introducedAllergens.includes(name);
+  box.innerHTML=names.map(name=>{
 
-    const introduced =
-      introducedFoods.includes(name);
+    const food=allFoods().find(f=>f.name===name);
+
+    const checked=introducedAllergens.includes(name);
+
+    const introduced=isIntroduced(name);
 
     return `
-      <label class="check-item">
 
-        <input
-          type="checkbox"
-          ${checked ? "checked":""}
-          onchange="setAllergen('${escapeQuotes(name)}')"
-        >
+      <div class="card">
 
-        <div>
-          <strong>${escapeHtml(name)}</strong>
+        <label class="check">
 
-          <div style="font-size:11px;color:var(--muted)">
-            ${introduced ? "✓ Продукт введено":"Продукт ще не відмічено"}
-          </div>
-        </div>
+          <input
+            type="checkbox"
+            ${checked?"checked":""}
+            onchange="toggleAllergen('${escapeQuotes(name)}')"
+          >
 
-      </label>
+          <span style="font-size:22px;">
+            ${food ? food.emoji : "⚠️"}
+          </span>
+
+          <span style="flex:1;">
+            <strong>${escapeHtml(name)}</strong>
+
+            <div class="muted">
+              ${introduced
+                ? "Продукт введено"
+                : "Продукт ще не введено"
+              }
+            </div>
+          </span>
+
+        </label>
+
+      </div>
+
     `;
 
   }).join("");
+
 }
 
-function populateProductSelect(){
 
-  const select =
-    document.getElementById("productSelect");
+function populateDiaryProducts(){
 
-  const groups = {};
+  const select=document.getElementById("diaryProduct");
 
-  allFoods().forEach(food => {
+  const groups={};
 
-    if(!groups[food.category])
-      groups[food.category] = [];
+  allFoods().forEach(food=>{
+
+    if(!groups[food.category]){
+      groups[food.category]=[];
+    }
 
     groups[food.category].push(food);
 
   });
 
-  let html =
-    `<option value="">— Обрати продукт —</option>`;
+  select.innerHTML=`
+    <option value="">Оберіть продукт</option>
+    ${
+      Object.entries(groups).map(([category,items])=>`
 
-  Object.keys(groups).forEach(category => {
+        <optgroup label="${escapeHtml(category)}">
 
-    html += `<optgroup label="${escapeHtml(category)}">`;
+          ${items.map(food=>`
 
-    groups[category].forEach(food => {
+            <option value="${escapeHtml(food.name)}">
+              ${food.emoji} ${escapeHtml(food.name)}
+              ${isIntroduced(food.name)?" ✓":""}
+            </option>
 
-      html += `
-        <option value="${escapeHtml(food.name)}">
-          ${food.icon} ${escapeHtml(food.name)}
-        </option>
-      `;
+          `).join("")}
 
-    });
+        </optgroup>
 
-    html += `</optgroup>`;
+      `).join("")
+    }
+  `;
 
-  });
-
-  select.innerHTML = html;
 }
 
-function productSelectChanged(){
 
-  const value =
-    document.getElementById("productSelect").value;
+function handleDiaryProductChange(){
+
+  const value=
+    document.getElementById("diaryProduct").value;
 
   if(value){
 
-    document.getElementById("diaryProduct").value =
-      value;
+    document.getElementById("diaryCustomProduct").value="";
 
   }
+
 }
+
 
 function saveDiaryEntry(){
 
-  const date =
+  const date=
     document.getElementById("diaryDate").value;
 
-  const product =
-    document.getElementById("diaryProduct").value.trim();
+  const selected=
+    document.getElementById("diaryProduct").value;
 
-  const amount =
+  const custom=
+    document.getElementById("diaryCustomProduct")
+      .value
+      .trim();
+
+  const product=selected || custom;
+
+  const amount=
     document.getElementById("diaryAmount").value.trim();
 
-  const reaction =
+  const reaction=
     document.getElementById("diaryReaction").value;
 
-  const notes =
+  const notes=
     document.getElementById("diaryNotes").value.trim();
 
-  const photoInput =
+  const photoInput=
     document.getElementById("diaryPhoto");
 
-  const editingId =
-    document.getElementById("editingEntryId").value;
+  if(!date){
 
-  if(!date || !product){
-
-    alert("Будь ласка, обери дату та продукт 🌸");
+    alert("Оберіть дату 🌸");
     return;
+
   }
 
-  const saveEntry = photo => {
+  if(!product){
 
-    if(editingId){
+    alert("Оберіть або введіть продукт 🌸");
+    return;
 
-      const index =
-        diaryEntries.findIndex(x =>
-          String(x.id) === String(editingId)
-        );
+  }
 
-      if(index !== -1){
+  const finishSave=(photo)=>{
 
-        diaryEntries[index] = {
-          ...diaryEntries[index],
-          date,
-          product,
-          amount,
-          reaction,
-          notes,
-          photo: photo || diaryEntries[index].photo || ""
-        };
+    const entry={
+      id:Date.now(),
+      date,
+      product,
+      amount,
+      reaction,
+      notes,
+      photo:photo || ""
+    };
 
-      }
-
-    }else{
-
-      diaryEntries.unshift({
-        id:Date.now(),
-        date,
-        product,
-        amount,
-        reaction,
-        notes,
-        photo:photo || ""
-      });
-
-    }
+    diaryEntries.push(entry);
 
     if(!introducedFoods.includes(product)){
 
       introducedFoods.push(product);
 
-      if(!foodDates[product])
-        foodDates[product] = date;
+    }
+
+    if(!foodDates[product]){
+
+      foodDates[product]=date;
+
     }
 
     saveData();
 
     clearDiaryForm();
-    renderAll();
+
+    renderDiary();
+    renderHome();
+    renderStats();
+    renderCalendar();
 
     alert("Запис збережено 🌸");
+
   };
 
-  if(photoInput.files[0]){
 
-    const reader = new FileReader();
+  if(photoInput.files && photoInput.files[0]){
 
-    reader.onload = e => {
-      saveEntry(e.target.result);
+    const reader=new FileReader();
+
+    reader.onload=()=>{
+      finishSave(reader.result);
     };
 
     reader.readAsDataURL(photoInput.files[0]);
 
   }else{
 
-    saveEntry("");
+    finishSave("");
+
   }
+
 }
+
 
 function clearDiaryForm(){
 
-  document.getElementById("diaryDate").value =
-    todayString();
+  document.getElementById("diaryDate").value=todayString();
 
-  document.getElementById("productSelect").value = "";
+  document.getElementById("diaryProduct").value="";
 
-  document.getElementById("diaryProduct").value = "";
+  document.getElementById("diaryCustomProduct").value="";
 
-  document.getElementById("diaryAmount").value = "";
+  document.getElementById("diaryAmount").value="";
 
-  document.getElementById("diaryReaction").selectedIndex = 0;
+  document.getElementById("diaryReaction").value="Все добре 🌸";
 
-  document.getElementById("diaryNotes").value = "";
+  document.getElementById("diaryNotes").value="";
 
-  document.getElementById("diaryPhoto").value = "";
+  document.getElementById("diaryPhoto").value="";
 
-  document.getElementById("editingEntryId").value = "";
 }
 
-function editDiary(id){
 
-  const entry =
-    diaryEntries.find(x => String(x.id) === String(id));
+function renderDiary(){
 
-  if(!entry) return;
+  populateDiaryProducts();
 
-  showTab("diary");
+  const box=document.getElementById("diaryList");
 
-  document.getElementById("diaryDate").value =
-    entry.date;
+  const entries=[...diaryEntries]
+    .sort((a,b)=>{
 
-  document.getElementById("diaryProduct").value =
-    entry.product;
+      if(a.date!==b.date){
+        return b.date.localeCompare(a.date);
+      }
 
-  document.getElementById("productSelect").value =
-    allFoods().some(x => x.name === entry.product)
-      ? entry.product
-      : "";
+      return b.id-a.id;
 
-  document.getElementById("diaryAmount").value =
-    entry.amount || "";
+    });
 
-  document.getElementById("diaryReaction").value =
-    entry.reaction || "Все добре 🌸";
+  if(!entries.length){
 
-  document.getElementById("diaryNotes").value =
-    entry.notes || "";
+    box.innerHTML=`
+      <div class="card empty">
+        Поки що немає записів 🌸
+      </div>
+    `;
 
-  document.getElementById("editingEntryId").value =
-    entry.id;
+    return;
 
-  window.scrollTo({top:0,behavior:"smooth"});
+  }
+
+  box.innerHTML=entries.map(e=>`
+
+    <div class="diary-entry">
+
+      <div class="entry-top">
+
+        <div>
+
+          <div class="entry-product">
+            ${escapeHtml(e.product)}
+          </div>
+
+          <div class="muted">
+            ${formatDate(e.date)}
+          </div>
+
+        </div>
+
+        <div class="entry-actions">
+
+          <button class="small-btn"
+                  onclick="editDiary(${e.id})">
+            ✏️
+          </button>
+
+          <button class="small-btn"
+                  onclick="deleteDiary(${e.id})">
+            🗑
+          </button>
+
+        </div>
+
+      </div>
+
+      ${e.amount
+        ? `<div class="muted" style="margin-top:6px;">
+            Кількість: ${escapeHtml(e.amount)}
+           </div>`
+        : ""
+      }
+
+      <div class="reaction">
+        ${escapeHtml(e.reaction)}
+      </div>
+
+      ${e.notes
+        ? `<div style="margin-top:8px;">
+            ${escapeHtml(e.notes)}
+           </div>`
+        : ""
+      }
+
+      ${e.photo
+        ? `<img class="entry-photo" src="${e.photo}" alt="">`
+        : ""
+      }
+
+    </div>
+
+  `).join("");
+
 }
+
 
 function deleteDiary(id){
 
   if(!confirm("Видалити цей запис?")) return;
 
-  diaryEntries =
-    diaryEntries.filter(x =>
-      String(x.id) !== String(id)
-    );
+  diaryEntries=
+    diaryEntries.filter(e=>e.id!==id);
 
   saveData();
-  renderAll();
+
+  renderDiary();
+  renderHome();
+  renderCalendar();
+  renderStats();
+
 }
 
-function renderDiary(){
 
-  const container =
-    document.getElementById("diaryEntries");
+function editDiary(id){
 
-  if(!diaryEntries.length){
+  const entry=diaryEntries.find(e=>e.id===id);
 
-    container.innerHTML =
-      `<div class="card empty">
-        Поки що немає записів 🌸
-      </div>`;
+  if(!entry) return;
 
-    return;
-  }
+  showTab(
+    "diary",
+    document.querySelectorAll(".tab")[2]
+  );
 
-  container.innerHTML =
-    diaryEntries.map(entry => {
+  populateDiaryProducts();
 
-      return `
-        <div class="card entry">
+  document.getElementById("diaryDate").value=entry.date;
 
-          <div class="entry-date">
-            ${formatDate(entry.date)}
-          </div>
+  document.getElementById("diaryProduct").value=
+    allFoods().some(f=>f.name===entry.product)
+      ? entry.product
+      : "";
 
-          <div class="entry-title">
-            ${escapeHtml(entry.product)}
-          </div>
+  document.getElementById("diaryCustomProduct").value=
+    allFoods().some(f=>f.name===entry.product)
+      ? ""
+      : entry.product;
 
-          ${entry.amount
-            ? `<div>🥄 ${escapeHtml(entry.amount)}</div>`
-            : ""}
+  document.getElementById("diaryAmount").value=
+    entry.amount || "";
 
-          <div>
-            ${escapeHtml(entry.reaction)}
-          </div>
+  document.getElementById("diaryReaction").value=
+    entry.reaction || "Все добре 🌸";
 
-          ${entry.notes
-            ? `<div style="margin-top:5px">
-                ${escapeHtml(entry.notes)}
-               </div>`
-            : ""}
+  document.getElementById("diaryNotes").value=
+    entry.notes || "";
 
-          ${entry.photo
-            ? `<img
-                class="photo-preview"
-                src="${entry.photo}"
-                alt="Фото продукту"
-              >`
-            : ""}
+  diaryEntries=
+    diaryEntries.filter(e=>e.id!==id);
 
-          <div class="entry-actions">
+  saveData();
 
-            <button
-              class="small-btn"
-              onclick="editDiary(${entry.id})"
-            >
-              ✏️ Редагувати
-            </button>
-
-            <button
-              class="small-btn delete"
-              onclick="deleteDiary(${entry.id})"
-            >
-              🗑 Видалити
-            </button>
-
-          </div>
-
-        </div>
-      `;
-
-    }).join("");
 }
 
-function formatDate(date){
 
-  if(!date) return "";
+function changeMonth(delta){
 
-  const parts = date.split("-");
+  calendarDate.setMonth(
+    calendarDate.getMonth()+delta
+  );
 
-  return `${parts[2]}.${parts[1]}.${parts[0]}`;
+  renderCalendar();
+
 }
+
 
 function renderCalendar(){
 
-  const year =
-    calendarDate.getFullYear();
+  const year=calendarDate.getFullYear();
 
-  const month =
-    calendarDate.getMonth();
+  const month=calendarDate.getMonth();
 
-  const monthNames = [
-    "Січень","Лютий","Березень","Квітень",
-    "Травень","Червень","Липень","Серпень",
-    "Вересень","Жовтень","Листопад","Грудень"
+  document.getElementById("calendarTitle").textContent=
+    calendarDate.toLocaleDateString("uk-UA",{
+      month:"long",
+      year:"numeric"
+    });
+
+  const grid=document.getElementById("calendarGrid");
+
+  const weekdays=[
+    "Пн","Вт","Ср","Чт","Пт","Сб","Нд"
   ];
 
-  document.getElementById("calendarTitle").textContent =
-    `${monthNames[month]} ${year}`;
+  let html=weekdays.map(d=>
+    `<div class="weekday">${d}</div>`
+  ).join("");
 
-  const first =
-    new Date(year,month,1);
+  const first=new Date(year,month,1);
 
-  let start =
-    first.getDay();
+  let start=first.getDay();
 
-  start = start === 0 ? 6 : start - 1;
+  start=start===0 ? 6 : start-1;
 
-  const days =
-    new Date(year,month+1,0).getDate();
-
-  let html = "";
+  const days=new Date(year,month+1,0).getDate();
 
   for(let i=0;i<start;i++){
 
-    html += `<div class="day empty"></div>`;
+    html+=`<button class="day empty"></button>`;
 
   }
 
   for(let day=1;day<=days;day++){
 
-    const date =
+    const date=
       `${year}-${String(month+1).padStart(2,"0")}-${String(day).padStart(2,"0")}`;
 
-    const hasEntry =
-      diaryEntries.some(x => x.date === date);
+    const entries=
+      diaryEntries.filter(e=>e.date===date);
 
-    const today =
-      date === todayString();
+    const isToday=date===todayString();
 
-    html += `
+    html+=`
+
       <button
-        class="day ${hasEntry ? "has-entry":""} ${today ? "today":""}"
-        onclick="showDateEntries('${date}')"
+        class="day ${entries.length?"has-entry":""} ${isToday?"today":""}"
+        onclick="selectCalendarDay('${date}')"
       >
-        ${day}
-        ${hasEntry ? '<span class="dot"></span>':""}
+
+        <div class="day-number">${day}</div>
+
+        ${
+          entries.length
+          ? `
+            <div class="day-products">
+              ${entries.slice(0,2).map(e=>
+                escapeHtml(e.product)
+              ).join("<br>")}
+
+              ${entries.length>2
+                ? `<br>+${entries.length-2}`
+                : ""
+              }
+            </div>
+          `
+          : ""
+        }
+
       </button>
-    `;
-  }
 
-  document.getElementById("calendarDays").innerHTML =
-    html;
-}
-
-function changeMonth(direction){
-
-  calendarDate.setMonth(
-    calendarDate.getMonth()+direction
-  );
-
-  renderCalendar();
-}
-
-function showDateEntries(date){
-
-  const entries =
-    diaryEntries.filter(x => x.date === date);
-
-  const container =
-    document.getElementById("selectedDateEntries");
-
-  if(!entries.length){
-
-    container.innerHTML = `
-      <div class="card empty">
-        На ${formatDate(date)} записів немає 🌸
-      </div>
     `;
 
-    return;
   }
 
-  container.innerHTML = `
+  grid.innerHTML=html;
+
+}
+
+
+function selectCalendarDay(date){
+
+  const entries=
+    diaryEntries.filter(e=>e.date===date);
+
+  const box=document.getElementById("selectedDay");
+
+  box.innerHTML=`
+
     <div class="card">
 
-      <h3>📅 ${formatDate(date)}</h3>
+      <div class="hero-title">
+        📅 ${formatDate(date)}
+      </div>
 
-      ${entries.map(entry => `
+      ${
+        entries.length
+        ? entries.map(e=>`
 
-        <div class="entry">
+          <div class="diary-entry" style="box-shadow:none;background:#fff7fa;">
 
-          <div class="entry-title">
-            ${escapeHtml(entry.product)}
+            <strong>${escapeHtml(e.product)}</strong>
+
+            ${e.amount
+              ? `<div class="muted">${escapeHtml(e.amount)}</div>`
+              : ""
+            }
+
+            <div class="reaction">
+              ${escapeHtml(e.reaction)}
+            </div>
+
+            ${e.notes
+              ? `<div style="margin-top:6px;">
+                  ${escapeHtml(e.notes)}
+                 </div>`
+              : ""
+            }
+
           </div>
 
-          <div>${escapeHtml(entry.reaction)}</div>
-
-          ${entry.amount
-            ? `<div>🥄 ${escapeHtml(entry.amount)}</div>`
-            : ""}
-
-          ${entry.notes
-            ? `<div>${escapeHtml(entry.notes)}</div>`
-            : ""}
-
-        </div>
-
-      `).join("")}
+        `).join("")
+        : `<div class="empty">У цей день записів немає.</div>`
+      }
 
     </div>
+
   `;
+
 }
+
 
 function renderStats(){
 
-  const foods =
-    allFoods();
+  const foods=allFoods();
 
-  const introduced =
-    foods.filter(x =>
-      introducedFoods.includes(x.name)
-    ).length;
+  const introduced=
+    foods.filter(f=>isIntroduced(f.name)).length;
 
-  const remaining =
+  const remaining=
     foods.length-introduced;
 
-  document.getElementById("statIntroduced").textContent =
+  document.getElementById("statIntroduced").textContent=
     introduced;
 
-  document.getElementById("statRemaining").textContent =
+  document.getElementById("statRemaining").textContent=
     remaining;
 
-  document.getElementById("statAllergens").textContent =
+  document.getElementById("statAllergens").textContent=
     introducedAllergens.length;
 
-  document.getElementById("statDiary").textContent =
+  document.getElementById("statDiary").textContent=
     diaryEntries.length;
 
-  const percent =
-    foods.length
-      ? Math.round(introduced/foods.length*100)
-      : 0;
+  const groups={};
 
-  document.getElementById("progressText").textContent =
-    percent+"%";
+  foods.forEach(food=>{
 
-  document.getElementById("progressBar").style.width =
-    percent+"%";
-}
+    if(!groups[food.category]){
+      groups[food.category]=[];
+    }
 
-function renderAll(){
+    groups[food.category].push(food);
 
-  renderFoods();
-  renderAllergens();
-  populateProductSelect();
-  renderDiary();
-  renderCalendar();
-  renderStats();
-}
+  });
 
-function showTab(tab,button){
+  document.getElementById("categoryStats").innerHTML=
+    Object.entries(groups).map(([category,items])=>{
 
-  document.querySelectorAll(".section")
-    .forEach(x => x.classList.remove("active"));
+      const done=
+        items.filter(f=>isIntroduced(f.name)).length;
 
-  document.getElementById(tab)
-    .classList.add("active");
+      const percent=
+        Math.round(done/items.length*100);
 
-  document.querySelectorAll(".tab")
-    .forEach(x => x.classList.remove("active"));
+      return `
 
-  if(button){
-    button.classList.add("active");
-  }else{
+        <div class="category-stat">
 
-    document.querySelectorAll(".tab")
-      .forEach(x => {
+          <div class="category-stat-top">
+            <span>
+              ${escapeHtml(category)}
+            </span>
 
-        if(
-          x.getAttribute("onclick") &&
-          x.getAttribute("onclick").includes("'"+tab+"'")
-        ){
-          x.classList.add("active");
-        }
-
-      });
-
-  }
-
-  renderAll();
-}
-
-function openProduct(name){
-
-  const food =
-    allFoods().find(x => x.name === name);
-
-  if(!food) return;
-
-  document.getElementById("modalProductName").textContent =
-    food.name;
-
-  document.getElementById("modalProductIcon").textContent =
-    food.icon;
-
-  const introduced =
-    isIntroduced(name);
-
-  const markedAllergen =
-    food.allergen || isAllergenMarked(name);
-
-  document.getElementById("modalProductStatus").innerHTML =
-    introduced
-      ? `<span class="badge done">✓ Продукт введено</span>`
-      : `<span class="badge">Ще не введено</span>`;
-
-  let info = "";
-
-  info += `
-    <div class="info-box">
-      <strong>Категорія</strong><br>
-      ${escapeHtml(food.category)}
-    </div>
-  `;
-
-  if(markedAllergen){
-
-    info += `
-      <div class="info-box">
-        🥜 <strong>Алерген</strong>
-      </div>
-    `;
-
-  }
-
-  if(foodDates[name]){
-
-    info += `
-      <div class="info-box">
-        📅 <strong>Перше введення:</strong>
-        ${formatDate(foodDates[name])}
-      </div>
-    `;
-
-  }
-
-  document.getElementById("modalProductInfo").innerHTML =
-    info;
-
-  const entries =
-    diaryEntries.filter(x => x.product === name);
-
-  const entryBox =
-    document.getElementById("modalProductEntries");
-
-  if(!entries.length){
-
-    entryBox.innerHTML =
-      `<div class="empty">
-        Записів по цьому продукту ще немає.
-      </div>`;
-
-  }else{
-
-    entryBox.innerHTML =
-      entries.map(entry => `
-
-        <div class="entry">
-
-          <div class="entry-date">
-            ${formatDate(entry.date)}
+            <strong>
+              ${done}/${items.length}
+            </strong>
           </div>
 
-          <div>
-            ${escapeHtml(entry.reaction)}
+          <div class="progress-line">
+            <div class="progress-fill"
+                 style="width:${percent}%">
+            </div>
           </div>
-
-          ${entry.amount
-            ? `<div>🥄 ${escapeHtml(entry.amount)}</div>`
-            : ""}
-
-          ${entry.notes
-            ? `<div>${escapeHtml(entry.notes)}</div>`
-            : ""}
-
-          ${entry.photo
-            ? `<img
-                class="photo-preview"
-                src="${entry.photo}"
-              >`
-            : ""}
 
         </div>
 
-      `).join("");
+      `;
 
-  }
+    }).join("");
 
-  document.getElementById("productModal")
+}
+
+
+function openCustomModal(){
+
+  document.getElementById("customName").value="";
+  document.getElementById("customCategory").value="🥦 Овочі";
+  document.getElementById("customEmoji").value="🍽️";
+  document.getElementById("customAllergen").checked=false;
+
+  document.getElementById("customModal")
     .classList.add("show");
+
 }
 
-function closeProductModal(){
 
-  document.getElementById("productModal")
-    .classList.remove("show");
-}
+function saveCustomFood(){
 
-function closeModalOutside(event){
+  const name=
+    document.getElementById("customName")
+      .value
+      .trim();
 
-  if(event.target.id === "productModal")
-    closeProductModal();
-}
+  const category=
+    document.getElementById("customCategory").value;
 
-function openAddProduct(){
+  const emoji=
+    document.getElementById("customEmoji").value.trim()
+    || "🍽️";
 
-  document.getElementById("newProductName").value = "";
-  document.getElementById("newProductCategory").value = "Овочі";
-  document.getElementById("newProductIcon").value = "🍽️";
-  document.getElementById("newProductAllergen").checked = false;
-
-  document.getElementById("addProductModal")
-    .classList.add("show");
-}
-
-function closeAddProduct(){
-
-  document.getElementById("addProductModal")
-    .classList.remove("show");
-}
-
-function closeAddOutside(event){
-
-  if(event.target.id === "addProductModal")
-    closeAddProduct();
-}
-
-function addCustomProduct(){
-
-  const name =
-    document.getElementById("newProductName")
-      .value.trim();
-
-  const category =
-    document.getElementById("newProductCategory").value;
-
-  const icon =
-    document.getElementById("newProductIcon")
-      .value.trim() || "🍽️";
-
-  const allergen =
-    document.getElementById("newProductAllergen").checked;
+  const allergen=
+    document.getElementById("customAllergen").checked;
 
   if(!name){
 
     alert("Введи назву продукту 🌸");
     return;
+
   }
 
-  if(allFoods().some(x =>
-    x.name.toLowerCase() === name.toLowerCase()
-  )){
+  if(allFoods().some(f=>f.name.toLowerCase()===name.toLowerCase())){
 
-    alert("Такий продукт вже є у списку.");
+    alert("Такий продукт уже є у списку.");
     return;
+
   }
 
   customFoods.push({
     name,
     category,
-    icon,
+    emoji,
     allergen
   });
 
-  if(allergen &&
-     !allergenNames.includes(name)){
-
-    introducedAllergens =
-      [...introducedAllergens,name];
-
-  }
+  /*
+    ВАЖЛИВО:
+    алерген ≠ введений продукт.
+    Тому тут ми НЕ додаємо продукт
+    до introducedAllergens і introducedFoods.
+  */
 
   saveData();
 
-  closeAddProduct();
-  renderAll();
+  closeModal("customModal");
 
-  alert("Новий продукт додано 🌸");
+  renderHome();
+  renderAllergens();
+  renderDiary();
+  renderStats();
+
+  alert("Власний продукт додано 🌸");
+
 }
 
-function deleteCustomProduct(name){
 
-  if(!confirm(`Видалити «${name}» зі списку?`))
-    return;
+function deleteCustomFood(name){
 
-  customFoods =
-    customFoods.filter(x => x.name !== name);
+  if(!confirm(`Видалити продукт «${name}»?`)) return;
 
-  introducedFoods =
-    introducedFoods.filter(x => x !== name);
+  customFoods=
+    customFoods.filter(f=>f.name!==name);
 
-  introducedAllergens =
-    introducedAllergens.filter(x => x !== name);
+  introducedFoods=
+    introducedFoods.filter(n=>n!==name);
+
+  introducedAllergens=
+    introducedAllergens.filter(n=>n!==name);
 
   delete foodDates[name];
 
+  diaryEntries=
+    diaryEntries.filter(e=>e.product!==name);
+
   saveData();
-  renderAll();
+
+  closeModal("productModal");
+
+  renderHome();
+  renderAllergens();
+  renderDiary();
+  renderStats();
+  renderCalendar();
+
 }
+
+
+function closeModal(id){
+
+  document.getElementById(id)
+    .classList.remove("show");
+
+}
+
+
+function closeModalOutside(event,id){
+
+  if(event.target.id===id){
+    closeModal(id);
+  }
+
+}
+
 
 function exportBackup(){
 
-  const backup = {
+  const data={
 
-    version:6,
-
-    exportedAt:new Date().toISOString(),
+    version:8,
 
     introducedFoods,
 
@@ -1937,116 +2339,133 @@ function exportBackup(){
 
   };
 
-  const blob =
-    new Blob(
-      [JSON.stringify(backup,null,2)],
-      {type:"application/json"}
-    );
+  const blob=new Blob(
+    [JSON.stringify(data,null,2)],
+    {type:"application/json"}
+  );
 
-  const url =
-    URL.createObjectURL(blob);
+  const url=URL.createObjectURL(blob);
 
-  const a =
-    document.createElement("a");
+  const a=document.createElement("a");
 
-  a.href = url;
+  a.href=url;
 
-  a.download =
+  a.download=
     `adelina-prykorm-backup-${todayString()}.json`;
-
-  document.body.appendChild(a);
 
   a.click();
 
-  a.remove();
-
   URL.revokeObjectURL(url);
+
 }
+
 
 function importBackup(event){
 
-  const file =
-    event.target.files[0];
+  const file=event.target.files[0];
 
   if(!file) return;
 
-  const reader =
-    new FileReader();
+  const reader=new FileReader();
 
-  reader.onload = e => {
+  reader.onload=()=>{
 
     try{
 
-      const data =
-        JSON.parse(e.target.result);
-
-      if(!Array.isArray(data.introducedFoods) ||
-         !Array.isArray(data.diaryEntries)){
-
-        throw new Error("Invalid backup");
-      }
+      const data=JSON.parse(reader.result);
 
       if(!confirm(
-        "Відновити цю резервну копію? Поточні дані будуть замінені."
+        "Імпорт замінить поточні дані програми. Продовжити?"
       )){
-
-        event.target.value = "";
         return;
       }
 
-      introducedFoods =
-        data.introducedFoods || [];
+      introducedFoods=
+        Array.isArray(data.introducedFoods)
+        ? data.introducedFoods
+        : [];
 
-      introducedAllergens =
-        data.introducedAllergens || [];
+      introducedAllergens=
+        Array.isArray(data.introducedAllergens)
+        ? data.introducedAllergens
+        : [];
 
-      diaryEntries =
-        data.diaryEntries || [];
+      diaryEntries=
+        Array.isArray(data.diaryEntries)
+        ? data.diaryEntries
+        : [];
 
-      customFoods =
-        data.customFoods || [];
+      customFoods=
+        Array.isArray(data.customFoods)
+        ? data.customFoods
+        : [];
 
-      foodDates =
-        data.foodDates || {};
+      foodDates=
+        data.foodDates && typeof data.foodDates==="object"
+        ? data.foodDates
+        : {};
 
       saveData();
-      renderAll();
 
-      alert("Резервну копію відновлено 🌸");
+      renderHome();
+      renderAllergens();
+      renderDiary();
+      renderCalendar();
+      renderStats();
+
+      alert("Дані успішно відновлено 🌸");
 
     }catch(error){
 
-      alert(
-        "Не вдалося відкрити файл резервної копії."
-      );
+      alert("Не вдалося прочитати резервну копію.");
 
     }
-
-    event.target.value = "";
 
   };
 
   reader.readAsText(file);
+
 }
 
-/* Start */
 
-document.getElementById("diaryDate").value =
+/* INITIALIZATION */
+
+document.getElementById("diaryDate").value=
   todayString();
 
-renderAll();
+populateDiaryProducts();
 
-</script>
+renderHome();
 
-<script>
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("./service-worker.js")
-      .then(() => console.log("Service Worker registered"))
-      .catch(error => console.log("Service Worker error:", error));
+renderAllergens();
+
+renderDiary();
+
+renderCalendar();
+
+renderStats();
+
+
+/* PWA */
+
+if("serviceWorker" in navigator){
+
+  window.addEventListener("load",()=>{
+
+    navigator.serviceWorker
+      .register("./service-worker.js")
+      .then(()=>{
+        console.log("Service Worker registered");
+      })
+      .catch(error=>{
+        console.log("Service Worker error:",error);
+      });
+
   });
+
 }
+
 </script>
-  
+
 </body>
 </html>
