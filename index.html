@@ -101,6 +101,7 @@ section.active {
   height: 100%;
   background: #d7b1bc;
   width: 0%;
+  transition: width 0.3s;
 }
 
 .category {
@@ -174,12 +175,41 @@ button.primary {
   margin-top: 5px;
 }
 
+button.secondary {
+  border: none;
+  background: #f5e7eb;
+  color: #765e66;
+  padding: 9px 13px;
+  border-radius: 12px;
+  margin-right: 5px;
+}
+
+button.delete {
+  border: none;
+  background: #f7dddd;
+  color: #a05e5e;
+  padding: 9px 13px;
+  border-radius: 12px;
+}
+
 .diary-entry {
   border-left: 4px solid #d7b1bc;
-  padding: 10px 12px;
+  padding: 12px;
   margin: 10px 0;
   background: #fff8fa;
   border-radius: 10px;
+}
+
+.diary-photo {
+  width: 100%;
+  max-height: 280px;
+  object-fit: cover;
+  border-radius: 15px;
+  margin-top: 10px;
+}
+
+.entry-buttons {
+  margin-top: 12px;
 }
 
 .stat-grid {
@@ -207,17 +237,33 @@ button.primary {
   color: #8d7c81;
 }
 
+.calendar-day {
+  padding: 12px;
+  margin: 8px 0;
+  background: #fff7f8;
+  border-radius: 13px;
+}
+
 .empty {
   text-align: center;
   padding: 25px 10px;
   color: #9a898e;
 }
 
-.calendar-day {
-  padding: 12px;
+.allergen-card {
+  background: #fffafa;
+  border-radius: 16px;
+  padding: 13px;
   margin: 8px 0;
-  background: #fff7f8;
-  border-radius: 13px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.allergen-card input {
+  width: 20px;
+  height: 20px;
+  margin: 0;
 }
 
 footer {
@@ -238,6 +284,7 @@ footer {
 
 <nav>
   <button class="active" onclick="showTab('home', this)">🏠 Головна</button>
+  <button onclick="showTab('allergens', this)">🥜 Алергени</button>
   <button onclick="showTab('diary', this)">📖 Щоденник</button>
   <button onclick="showTab('calendar', this)">📅 Календар</button>
   <button onclick="showTab('stats', this)">📊 Статистика</button>
@@ -260,11 +307,23 @@ footer {
   </div>
 
   <div class="card">
-
     <h2>🥣 Продукти</h2>
-
     <div id="foodList"></div>
+  </div>
 
+</section>
+
+
+<section id="allergens">
+
+  <div class="card">
+    <h2>🥜 Алергени</h2>
+
+    <p class="small">
+      Тут можна окремо відстежувати введення основних алергенів.
+    </p>
+
+    <div id="allergenList"></div>
   </div>
 
 </section>
@@ -274,7 +333,7 @@ footer {
 
   <div class="card">
 
-    <h2>📖 Додати запис</h2>
+    <h2 id="diaryFormTitle">📖 Додати запис</h2>
 
     <label>Дата</label>
     <input type="date" id="diaryDate">
@@ -305,8 +364,24 @@ footer {
       placeholder="Наприклад: їла із задоволенням"
     ></textarea>
 
-    <button class="primary" onclick="addDiary()">
-      💕 Додати до щоденника
+    <label>📸 Фото</label>
+    <input
+      type="file"
+      id="diaryPhoto"
+      accept="image/*"
+    >
+
+    <button class="primary" onclick="saveDiary()">
+      💕 Зберегти запис
+    </button>
+
+    <button
+      id="cancelEdit"
+      class="secondary"
+      style="display:none; width:100%; margin-top:10px;"
+      onclick="cancelEditing()"
+    >
+      Скасувати редагування
     </button>
 
   </div>
@@ -367,7 +442,6 @@ footer {
     </div>
 
   </div>
-
 
   <div class="card">
 
@@ -490,11 +564,35 @@ const foods = [
 ];
 
 
+const allergenFoods = [
+  "Куряче яйце",
+  "Арахіс",
+  "Мигдаль",
+  "Кеш'ю",
+  "Волоський горіх",
+  "Пшениця",
+  "Ячмінь",
+  "Коров'яче молоко",
+  "Лосось",
+  "Тріска",
+  "Хек",
+  "Форель",
+  "Креветки",
+  "Полуниця",
+  "Малина"
+];
+
+
 let introduced =
   JSON.parse(localStorage.getItem("introducedFoods")) || [];
 
+let introducedAllergens =
+  JSON.parse(localStorage.getItem("introducedAllergens")) || [];
+
 let diary =
   JSON.parse(localStorage.getItem("diaryEntries")) || [];
+
+let editingIndex = null;
 
 
 function getAllFoods() {
@@ -589,6 +687,7 @@ function renderFoods() {
         );
 
         updateStats();
+
       };
 
 
@@ -629,6 +728,76 @@ function renderFoods() {
 }
 
 
+function renderAllergens() {
+
+  const container =
+    document.getElementById("allergenList");
+
+  container.innerHTML = "";
+
+
+  allergenFoods.forEach(name => {
+
+    const row =
+      document.createElement("div");
+
+    row.className = "allergen-card";
+
+
+    const left =
+      document.createElement("div");
+
+    left.innerHTML =
+      "⚠️ <strong>" + name + "</strong>";
+
+
+    const checkbox =
+      document.createElement("input");
+
+    checkbox.type = "checkbox";
+
+    checkbox.checked =
+      introducedAllergens.includes(name);
+
+
+    checkbox.onchange = function() {
+
+      if (this.checked) {
+
+        if (!introducedAllergens.includes(name)) {
+          introducedAllergens.push(name);
+        }
+
+      } else {
+
+        introducedAllergens =
+          introducedAllergens.filter(
+            x => x !== name
+          );
+
+      }
+
+
+      localStorage.setItem(
+        "introducedAllergens",
+        JSON.stringify(introducedAllergens)
+      );
+
+      updateStats();
+
+    };
+
+
+    row.appendChild(left);
+    row.appendChild(checkbox);
+
+    container.appendChild(row);
+
+  });
+
+}
+
+
 function fillProductSelect() {
 
   const select =
@@ -656,7 +825,7 @@ function fillProductSelect() {
 }
 
 
-function addDiary() {
+function saveDiary() {
 
   const date =
     document.getElementById("diaryDate").value;
@@ -673,6 +842,9 @@ function addDiary() {
   const notes =
     document.getElementById("diaryNotes").value;
 
+  const photoInput =
+    document.getElementById("diaryPhoto");
+
 
   if (!date || !product) {
 
@@ -683,29 +855,84 @@ function addDiary() {
   }
 
 
-  diary.push({
+  const saveEntry = function(photoData) {
 
-    date,
-    product,
-    amount,
-    reaction,
-    notes
+    const entry = {
 
-  });
+      date,
+      product,
+      amount,
+      reaction,
+      notes,
+      photo: photoData || ""
 
-
-  localStorage.setItem(
-    "diaryEntries",
-    JSON.stringify(diary)
-  );
+    };
 
 
-  document.getElementById("diaryAmount").value = "";
-  document.getElementById("diaryNotes").value = "";
+    if (editingIndex !== null) {
 
-  renderDiary();
-  renderCalendar();
-  updateStats();
+      diary[editingIndex] = entry;
+
+      editingIndex = null;
+
+    } else {
+
+      diary.push(entry);
+
+    }
+
+
+    localStorage.setItem(
+      "diaryEntries",
+      JSON.stringify(diary)
+    );
+
+
+    clearForm();
+
+    renderDiary();
+    renderCalendar();
+    updateStats();
+
+  };
+
+
+  if (photoInput.files.length > 0) {
+
+    const reader =
+      new FileReader();
+
+
+    reader.onload = function(event) {
+
+      saveEntry(event.target.result);
+
+    };
+
+
+    reader.readAsDataURL(
+      photoInput.files[0]
+    );
+
+  } else {
+
+    if (
+      editingIndex !== null &&
+      diary[editingIndex] &&
+      diary[editingIndex].photo
+    ) {
+
+      saveEntry(
+        diary[editingIndex].photo
+      );
+
+    } else {
+
+      saveEntry("");
+
+    }
+
+  }
 
 }
 
@@ -728,9 +955,17 @@ function renderDiary() {
   }
 
 
-  [...diary]
+  diary
+    .map((entry, index) => ({
+      entry,
+      index
+    }))
     .reverse()
-    .forEach((entry, index) => {
+    .forEach(item => {
+
+      const entry = item.entry;
+      const index = item.index;
+
 
       const div =
         document.createElement("div");
@@ -738,17 +973,29 @@ function renderDiary() {
       div.className = "diary-entry";
 
 
+      let photoHTML = "";
+
+      if (entry.photo) {
+
+        photoHTML =
+          `<img class="diary-photo" src="${entry.photo}" alt="Фото їжі">`;
+
+      }
+
+
       div.innerHTML = `
 
-        <strong>${entry.product}</strong>
+        <strong>🥣 ${entry.product}</strong>
 
         <div class="small">
           📅 ${entry.date}
         </div>
 
-        <div>
-          ${entry.amount || ""}
-        </div>
+        ${
+          entry.amount
+          ? `<div>🥄 ${entry.amount}</div>`
+          : ""
+        }
 
         <div>
           ${entry.reaction}
@@ -760,12 +1007,182 @@ function renderDiary() {
           : ""
         }
 
+        ${photoHTML}
+
+        <div class="entry-buttons">
+
+          <button
+            class="secondary"
+            onclick="editDiary(${index})"
+          >
+            ✏️ Редагувати
+          </button>
+
+          <button
+            class="delete"
+            onclick="deleteDiary(${index})"
+          >
+            🗑️ Видалити
+          </button>
+
+        </div>
+
       `;
 
 
       container.appendChild(div);
 
     });
+
+}
+
+
+function editDiary(index) {
+
+  const entry =
+    diary[index];
+
+
+  editingIndex = index;
+
+
+  document.getElementById(
+    "diaryFormTitle"
+  ).textContent =
+    "✏️ Редагувати запис";
+
+
+  document.getElementById(
+    "diaryDate"
+  ).value =
+    entry.date;
+
+
+  document.getElementById(
+    "diaryProduct"
+  ).value =
+    entry.product;
+
+
+  document.getElementById(
+    "diaryAmount"
+  ).value =
+    entry.amount || "";
+
+
+  document.getElementById(
+    "diaryReaction"
+  ).value =
+    entry.reaction;
+
+
+  document.getElementById(
+    "diaryNotes"
+  ).value =
+    entry.notes || "";
+
+
+  document.getElementById(
+    "cancelEdit"
+  ).style.display =
+    "block";
+
+
+  showTab(
+    "diary",
+    document.querySelectorAll("nav button")[2]
+  );
+
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+}
+
+
+function deleteDiary(index) {
+
+  const answer =
+    confirm(
+      "Видалити цей запис? 🌸"
+    );
+
+
+  if (!answer) return;
+
+
+  diary.splice(index, 1);
+
+
+  localStorage.setItem(
+    "diaryEntries",
+    JSON.stringify(diary)
+  );
+
+
+  renderDiary();
+  renderCalendar();
+  updateStats();
+
+}
+
+
+function cancelEditing() {
+
+  editingIndex = null;
+
+  clearForm();
+
+}
+
+
+function clearForm() {
+
+  document.getElementById(
+    "diaryFormTitle"
+  ).textContent =
+    "📖 Додати запис";
+
+
+  document.getElementById(
+    "diaryDate"
+  ).value =
+    new Date()
+      .toISOString()
+      .split("T")[0];
+
+
+  document.getElementById(
+    "diaryProduct"
+  ).value = "";
+
+
+  document.getElementById(
+    "diaryAmount"
+  ).value = "";
+
+
+  document.getElementById(
+    "diaryReaction"
+  ).selectedIndex = 0;
+
+
+  document.getElementById(
+    "diaryNotes"
+  ).value = "";
+
+
+  document.getElementById(
+    "diaryPhoto"
+  ).value = "";
+
+
+  document.getElementById(
+    "cancelEdit"
+  ).style.display =
+    "none";
 
 }
 
@@ -853,9 +1270,7 @@ function updateStats() {
 
 
   const allergens =
-    allFoods.filter(
-      food => food.allergen
-    ).length;
+    allergenFoods.length;
 
 
   const diaryCount =
@@ -903,6 +1318,8 @@ function updateStats() {
   document.getElementById(
     "statAllergens"
   ).textContent =
+    introducedAllergens.length +
+    " / " +
     allergens;
 
 
@@ -959,6 +1376,7 @@ document.getElementById(
 
 
 renderFoods();
+renderAllergens();
 fillProductSelect();
 renderDiary();
 renderCalendar();
