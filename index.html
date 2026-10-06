@@ -6,372 +6,450 @@
 <title>Аделіна — Мій прикорм</title>
 
 <style>
-* {
-  box-sizing: border-box;
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:#fff8fb;
+  color:#655767;
 }
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: #fff8fb;
-  color: #5f5360;
+header{
+  background:linear-gradient(135deg,#f9dfe9,#e9e3f8);
+  padding:24px 16px;
+  text-align:center;
+  border-radius:0 0 28px 28px;
 }
 
-header {
-  background: linear-gradient(135deg, #f9dfe9, #e9e3f8);
-  padding: 24px 16px;
-  text-align: center;
-  border-radius: 0 0 28px 28px;
+header h1{
+  margin:0;
+  color:#6c5b70;
+  font-size:25px;
 }
 
-header h1 {
-  margin: 0;
-  color: #6c5b70;
-  font-size: 25px;
+header p{
+  margin:7px 0 0;
+  color:#887789;
+  font-size:14px;
 }
 
-header p {
-  margin: 7px 0 0;
-  font-size: 14px;
-  color: #887789;
+nav{
+  display:flex;
+  gap:7px;
+  overflow-x:auto;
+  padding:11px;
+  background:white;
+  position:sticky;
+  top:0;
+  z-index:20;
+  border-bottom:1px solid #f0e6ed;
 }
 
-nav {
-  display: flex;
-  overflow-x: auto;
-  gap: 8px;
-  padding: 12px;
-  background: white;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  border-bottom: 1px solid #f0e6ed;
+nav button{
+  flex:0 0 auto;
+  border:0;
+  background:#f8eef4;
+  color:#756577;
+  padding:10px 13px;
+  border-radius:18px;
+  font-size:13px;
 }
 
-nav button {
-  flex: 0 0 auto;
-  border: none;
-  background: #f8eef4;
-  color: #756577;
-  padding: 10px 13px;
-  border-radius: 18px;
-  font-size: 13px;
+nav button.active{
+  background:#dfd0e8;
+  color:#5d4b64;
+  font-weight:600;
 }
 
-nav button.active {
-  background: #e8d9ee;
-  color: #624d68;
-  font-weight: 600;
+main{
+  max-width:720px;
+  margin:auto;
+  padding:16px;
 }
 
-main {
-  padding: 16px;
-  max-width: 700px;
-  margin: auto;
+.section{display:none}
+.section.active{display:block}
+
+h2{
+  color:#69596d;
+  margin:7px 0 14px;
 }
 
-.section {
-  display: none;
+h3{
+  color:#766477;
 }
 
-.section.active {
-  display: block;
-}
-
-h2 {
-  color: #69596d;
-  margin-top: 8px;
-}
-
-h3 {
-  color: #766477;
-  margin-bottom: 10px;
+.card{
+  background:white;
+  border:1px solid #f0e4eb;
+  border-radius:20px;
+  padding:16px;
+  margin-bottom:13px;
+  box-shadow:0 3px 12px rgba(120,90,110,.05);
 }
 
 /* SEARCH */
 
-.search-box {
-  position: relative;
-  margin: 15px 0 10px;
+.search{
+  margin-bottom:10px;
 }
 
-.search-box input {
-  width: 100%;
-  padding: 13px 16px;
-  border: 1px solid #eadde6;
-  border-radius: 18px;
-  background: white;
-  font-size: 15px;
-  outline: none;
-}
-
-.search-box input:focus {
-  border-color: #d9c4df;
+.search input{
+  width:100%;
+  border:1px solid #eadde6;
+  border-radius:18px;
+  padding:13px 16px;
+  background:white;
+  font-size:15px;
+  outline:none;
 }
 
 /* FILTERS */
 
-.filters {
-  display: flex;
-  gap: 7px;
-  overflow-x: auto;
-  padding: 4px 0 14px;
+.filters{
+  display:flex;
+  gap:7px;
+  overflow-x:auto;
+  padding-bottom:14px;
 }
 
-.filters button {
-  white-space: nowrap;
-  border: none;
-  background: #f4edf5;
-  color: #746478;
-  padding: 9px 13px;
-  border-radius: 16px;
-  font-size: 13px;
+.filters button{
+  border:0;
+  white-space:nowrap;
+  background:#f4edf5;
+  color:#746478;
+  padding:9px 13px;
+  border-radius:16px;
 }
 
-.filters button.active {
-  background: #d9c8e2;
-  color: #5c4962;
-  font-weight: 600;
+.filters button.active{
+  background:#d8c5e1;
+  color:#5c4962;
+  font-weight:600;
 }
 
-/* FOOD CARDS */
+/* FOOD */
 
-.category {
-  margin-bottom: 24px;
+.category{
+  margin-bottom:25px;
 }
 
-.category-title {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 18px;
-  margin-bottom: 10px;
+.category-title{
+  font-size:18px;
+  font-weight:600;
+  margin-bottom:10px;
 }
 
-.food-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
+.food-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
 }
 
-.food-card {
-  background: white;
-  border-radius: 20px;
-  padding: 13px;
-  border: 1px solid #f0e4eb;
-  box-shadow: 0 3px 12px rgba(120, 90, 110, 0.05);
-  min-height: 105px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.food-card{
+  background:white;
+  border:1px solid #f0e4eb;
+  border-radius:20px;
+  padding:13px;
+  min-height:125px;
+  box-shadow:0 3px 12px rgba(120,90,110,.05);
 }
 
-.food-card.introduced {
-  background: #f5f9f2;
-  border-color: #dcebd6;
+.food-card.introduced{
+  background:#f5f9f2;
+  border-color:#dcebd6;
 }
 
-.food-top {
-  display: flex;
-  justify-content: space-between;
-  gap: 6px;
-  align-items: flex-start;
+.food-emoji{
+  font-size:29px;
 }
 
-.food-emoji {
-  font-size: 27px;
+.food-name{
+  font-size:15px;
+  font-weight:600;
+  margin-top:7px;
+  line-height:1.25;
 }
 
-.food-name {
-  font-size: 15px;
-  font-weight: 600;
-  color: #655767;
-  line-height: 1.25;
-  margin-top: 6px;
+.food-badge{
+  display:inline-block;
+  margin-top:7px;
+  font-size:10px;
+  padding:4px 7px;
+  border-radius:10px;
 }
 
-.allergen-badge {
-  font-size: 10px;
-  background: #f8e1e5;
-  color: #a06470;
-  padding: 4px 7px;
-  border-radius: 10px;
-  white-space: nowrap;
+.badge-allergen{
+  background:#f8e1e5;
+  color:#a06470;
 }
 
-.food-card label {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 12px;
-  color: #87798a;
-  margin-top: 9px;
+.badge-done{
+  background:#e2f0dc;
+  color:#66815d;
 }
 
-.food-card input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  accent-color: #b99fc0;
+.food-card label{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  font-size:12px;
+  margin-top:10px;
+  color:#88798b;
 }
 
-/* GENERAL */
-
-.card {
-  background: white;
-  padding: 16px;
-  border-radius: 20px;
-  margin-bottom: 14px;
-  border: 1px solid #f0e4eb;
-  box-shadow: 0 3px 12px rgba(120, 90, 110, 0.05);
+.food-card input{
+  width:18px;
+  height:18px;
+  accent-color:#b69abd;
 }
 
-button.primary {
-  border: none;
-  background: #d9c8e2;
-  color: #5d4c64;
-  padding: 11px 17px;
-  border-radius: 16px;
-  font-size: 14px;
+/* PROGRESS */
+
+.progress-box{
+  margin-bottom:18px;
 }
 
-button.delete {
-  border: none;
-  background: #f8e1e5;
-  color: #a15d69;
-  padding: 8px 12px;
-  border-radius: 13px;
+.progress-info{
+  display:flex;
+  justify-content:space-between;
+  font-size:13px;
+  margin-bottom:7px;
 }
 
-button.edit {
-  border: none;
-  background: #eee6f4;
-  color: #705d78;
-  padding: 8px 12px;
-  border-radius: 13px;
-  margin-right: 5px;
+.progress{
+  height:10px;
+  background:#eee5ed;
+  border-radius:20px;
+  overflow:hidden;
 }
 
-/* DIARY */
-
-.form-group {
-  margin-bottom: 12px;
+.progress-bar{
+  height:100%;
+  width:0;
+  background:#c9afd2;
+  border-radius:20px;
+  transition:.3s;
 }
 
-.form-group label {
-  display: block;
-  font-size: 13px;
-  margin-bottom: 5px;
-  color: #766477;
+/* FORMS */
+
+.form-group{
+  margin-bottom:12px;
+}
+
+.form-group label{
+  display:block;
+  font-size:13px;
+  margin-bottom:5px;
+  color:#766477;
 }
 
 .form-group input,
 .form-group select,
-.form-group textarea {
-  width: 100%;
-  border: 1px solid #eadde6;
-  border-radius: 14px;
-  padding: 11px;
-  font-size: 14px;
-  background: #fff;
-  font-family: inherit;
+.form-group textarea{
+  width:100%;
+  border:1px solid #eadde6;
+  border-radius:14px;
+  padding:11px;
+  background:white;
+  font-family:inherit;
+  font-size:14px;
 }
 
-.form-group textarea {
-  min-height: 75px;
-  resize: vertical;
+.form-group textarea{
+  min-height:75px;
+  resize:vertical;
 }
 
-.diary-photo {
-  width: 100%;
-  max-height: 230px;
-  object-fit: cover;
-  border-radius: 16px;
-  margin-top: 10px;
+.primary{
+  border:0;
+  background:#d9c8e2;
+  color:#5d4c64;
+  padding:11px 17px;
+  border-radius:16px;
+  font-size:14px;
 }
 
-.entry-buttons {
-  margin-top: 12px;
+/* DIARY */
+
+.diary-photo{
+  width:100%;
+  max-height:240px;
+  object-fit:cover;
+  border-radius:16px;
+  margin-top:10px;
+}
+
+.entry-buttons{
+  margin-top:12px;
+}
+
+.edit,.delete{
+  border:0;
+  padding:8px 12px;
+  border-radius:13px;
+  margin-right:5px;
+}
+
+.edit{
+  background:#eee6f4;
+  color:#705d78;
+}
+
+.delete{
+  background:#f8e1e5;
+  color:#a15d69;
 }
 
 /* ALLERGENS */
 
-.allergen-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 13px;
-  margin-bottom: 8px;
-  background: white;
-  border-radius: 16px;
-  border: 1px solid #f0e4eb;
+.allergen-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:white;
+  border:1px solid #f0e4eb;
+  border-radius:16px;
+  padding:13px;
+  margin-bottom:8px;
 }
 
-.allergen-item-left {
-  display: flex;
-  align-items: center;
-  gap: 9px;
+.allergen-left{
+  display:flex;
+  align-items:center;
+  gap:9px;
 }
 
-.allergen-item input {
-  width: 18px;
-  height: 18px;
-  accent-color: #b99fc0;
+.allergen-left input{
+  width:18px;
+  height:18px;
+  accent-color:#b69abd;
 }
 
-/* CALENDAR / STATS */
+/* CALENDAR */
 
-.date-group {
-  margin-bottom: 18px;
+.calendar-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:12px;
 }
 
-.date-title {
-  font-weight: 600;
-  color: #705f73;
-  margin-bottom: 8px;
+.calendar-head button{
+  border:0;
+  background:#f0e6f3;
+  border-radius:14px;
+  padding:9px 12px;
+  color:#6e5c72;
 }
 
-.stat-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+.month-title{
+  font-weight:600;
+  color:#6c5a70;
 }
 
-.stat-card {
-  background: white;
-  border-radius: 20px;
-  padding: 18px 12px;
-  text-align: center;
-  border: 1px solid #f0e4eb;
+.weekdays,
+.calendar-grid{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:5px;
 }
 
-.stat-number {
-  font-size: 28px;
-  font-weight: 700;
-  color: #806b84;
+.weekdays div{
+  text-align:center;
+  font-size:10px;
+  color:#998b9b;
+  padding-bottom:4px;
 }
 
-.stat-label {
-  font-size: 12px;
-  color: #8c7d8e;
-  margin-top: 4px;
+.day{
+  min-height:43px;
+  border:0;
+  border-radius:12px;
+  background:#faf5f8;
+  color:#6c5c6e;
+  position:relative;
 }
 
-.empty {
-  text-align: center;
-  padding: 25px 10px;
-  color: #9b8d9d;
+.day.empty{
+  background:transparent;
 }
 
-.small-note {
-  font-size: 12px;
-  color: #9a8c9d;
-  line-height: 1.5;
+.day.today{
+  box-shadow:inset 0 0 0 2px #d1b8d8;
 }
 
-@media (min-width: 600px) {
-  .food-grid {
-    grid-template-columns: repeat(3, 1fr);
+.day.has-entry{
+  background:#eadff0;
+  font-weight:600;
+}
+
+.day-dot{
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:#a98bb2;
+  position:absolute;
+  bottom:5px;
+  left:50%;
+  transform:translateX(-50%);
+}
+
+/* STATS */
+
+.stat-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+
+.stat-card{
+  background:white;
+  border:1px solid #f0e4eb;
+  border-radius:20px;
+  padding:18px 10px;
+  text-align:center;
+}
+
+.stat-number{
+  font-size:28px;
+  font-weight:700;
+  color:#806b84;
+}
+
+.stat-label{
+  font-size:12px;
+  color:#8c7d8e;
+  margin-top:4px;
+}
+
+.small-note{
+  font-size:12px;
+  color:#998b9b;
+  line-height:1.5;
+}
+
+.empty{
+  text-align:center;
+  padding:25px 10px;
+  color:#9b8d9d;
+}
+
+.date-title{
+  font-weight:600;
+  color:#705f73;
+  margin:16px 0 8px;
+}
+
+.selected-date{
+  margin-top:15px;
+}
+
+@media(min-width:600px){
+  .food-grid{
+    grid-template-columns:repeat(3,1fr);
   }
 }
 </style>
@@ -385,35 +463,46 @@ button.edit {
 </header>
 
 <nav>
-  <button class="active" onclick="showSection('home', this)">🏠 Головна</button>
-  <button onclick="showSection('allergens', this)">🥜 Алергени</button>
-  <button onclick="showSection('diary', this)">📖 Щоденник</button>
-  <button onclick="showSection('calendar', this)">📅 Календар</button>
-  <button onclick="showSection('stats', this)">📊 Статистика</button>
+  <button class="active" onclick="showSection('home',this)">🏠 Головна</button>
+  <button onclick="showSection('allergens',this)">🥜 Алергени</button>
+  <button onclick="showSection('diary',this)">📖 Щоденник</button>
+  <button onclick="showSection('calendar',this)">📅 Календар</button>
+  <button onclick="showSection('stats',this)">📊 Статистика</button>
 </nav>
 
 <main>
 
-<!-- HOME -->
+<!-- ГОЛОВНА -->
 
 <section id="home" class="section active">
 
   <h2>🥣 Продукти</h2>
 
-  <div class="search-box">
+  <div class="card progress-box">
+    <div class="progress-info">
+      <span>Прогрес прикорму 🌸</span>
+      <b id="progressText">0%</b>
+    </div>
+
+    <div class="progress">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+  </div>
+
+  <div class="search">
     <input
-      type="text"
       id="foodSearch"
+      type="text"
       placeholder="🔍 Пошук продукту..."
       oninput="renderFoods()"
     >
   </div>
 
   <div class="filters">
-    <button class="active" onclick="setFilter('all', this)">Усі</button>
-    <button onclick="setFilter('notIntroduced', this)">Не введені</button>
-    <button onclick="setFilter('introduced', this)">Введені</button>
-    <button onclick="setFilter('allergen', this)">Алергени</button>
+    <button class="active" onclick="setFilter('all',this)">Усі</button>
+    <button onclick="setFilter('notIntroduced',this)">Не введені</button>
+    <button onclick="setFilter('introduced',this)">Введені</button>
+    <button onclick="setFilter('allergen',this)">Алергени</button>
   </div>
 
   <div id="foodContainer"></div>
@@ -421,7 +510,7 @@ button.edit {
 </section>
 
 
-<!-- ALLERGENS -->
+<!-- АЛЕРГЕНИ -->
 
 <section id="allergens" class="section">
 
@@ -438,7 +527,7 @@ button.edit {
 </section>
 
 
-<!-- DIARY -->
+<!-- ДНЕВНИК -->
 
 <section id="diary" class="section">
 
@@ -453,10 +542,16 @@ button.edit {
 
     <div class="form-group">
       <label>Продукт</label>
+
+      <select id="diaryProductSelect" onchange="productSelectChanged()">
+        <option value="">Оберіть продукт</option>
+      </select>
+
       <input
         type="text"
         id="diaryProduct"
-        placeholder="Наприклад: кабачок"
+        placeholder="Або введіть свій продукт"
+        style="margin-top:7px"
       >
     </div>
 
@@ -471,6 +566,7 @@ button.edit {
 
     <div class="form-group">
       <label>Реакція</label>
+
       <select id="diaryReaction">
         <option>Все добре 🌸</option>
         <option>Без реакції 🙂</option>
@@ -481,6 +577,7 @@ button.edit {
 
     <div class="form-group">
       <label>Нотатки</label>
+
       <textarea
         id="diaryNotes"
         placeholder="Наприклад: їла із задоволенням..."
@@ -503,18 +600,44 @@ button.edit {
 </section>
 
 
-<!-- CALENDAR -->
+<!-- КАЛЕНДАР -->
 
 <section id="calendar" class="section">
 
   <h2>📅 Календар</h2>
 
-  <div id="calendarContainer"></div>
+  <div class="card">
+
+    <div class="calendar-head">
+
+      <button onclick="changeMonth(-1)">←</button>
+
+      <div class="month-title" id="monthTitle"></div>
+
+      <button onclick="changeMonth(1)">→</button>
+
+    </div>
+
+    <div class="weekdays">
+      <div>Пн</div>
+      <div>Вт</div>
+      <div>Ср</div>
+      <div>Чт</div>
+      <div>Пт</div>
+      <div>Сб</div>
+      <div>Нд</div>
+    </div>
+
+    <div class="calendar-grid" id="calendarGrid"></div>
+
+    <div id="selectedDateEntries" class="selected-date"></div>
+
+  </div>
 
 </section>
 
 
-<!-- STATS -->
+<!-- СТАТИСТИКА -->
 
 <section id="stats" class="section">
 
@@ -528,18 +651,32 @@ button.edit {
     </div>
 
     <div class="stat-card">
-      <div class="stat-number" id="statTotal">0</div>
-      <div class="stat-label">Усього продуктів</div>
+      <div class="stat-number" id="statRemaining">0</div>
+      <div class="stat-label">Залишилось</div>
     </div>
 
     <div class="stat-card">
       <div class="stat-number" id="statAllergens">0</div>
-      <div class="stat-label">Введено алергенів</div>
+      <div class="stat-label">Алергенів</div>
     </div>
 
     <div class="stat-card">
       <div class="stat-number" id="statDiary">0</div>
-      <div class="stat-label">Записів у щоденнику</div>
+      <div class="stat-label">Записів</div>
+    </div>
+
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <h3>🌸 Твій прогрес</h3>
+
+    <div class="progress-info">
+      <span>Продукти</span>
+      <b id="statsPercent">0%</b>
+    </div>
+
+    <div class="progress">
+      <div class="progress-bar" id="statsBar"></div>
     </div>
 
   </div>
@@ -551,115 +688,119 @@ button.edit {
 
 <script>
 
+/* =========================
+   ПРОДУКТИ
+========================= */
+
 const foods = [
 
   {
-    category: "🥦 Овочі",
-    emoji: "🥦",
-    items: [
-      ["Кабачок", false],
-      ["Броколі", false],
-      ["Цвітна капуста", false],
-      ["Морква", false],
-      ["Гарбуз", false],
-      ["Батат", false],
-      ["Картопля", false],
-      ["Зелений горошок", false],
-      ["Авокадо", false]
+    category:"🥦 Овочі",
+    emoji:"🥦",
+    items:[
+      ["Кабачок",false],
+      ["Броколі",false],
+      ["Цвітна капуста",false],
+      ["Морква",false],
+      ["Гарбуз",false],
+      ["Батат",false],
+      ["Картопля",false],
+      ["Зелений горошок",false],
+      ["Авокадо",false]
     ]
   },
 
   {
-    category: "🍎 Фрукти та ягоди",
-    emoji: "🍎",
-    items: [
-      ["Яблуко", false],
-      ["Груша", false],
-      ["Банан", false],
-      ["Персик", false],
-      ["Нектарин", false],
-      ["Абрикос", false],
-      ["Слива", false],
-      ["Манго", false],
-      ["Полуниця", true],
-      ["Малина", true],
-      ["Чорниця", false]
+    category:"🍎 Фрукти та ягоди",
+    emoji:"🍎",
+    items:[
+      ["Яблуко",false],
+      ["Груша",false],
+      ["Банан",false],
+      ["Персик",false],
+      ["Нектарин",false],
+      ["Абрикос",false],
+      ["Слива",false],
+      ["Манго",false],
+      ["Полуниця",true],
+      ["Малина",true],
+      ["Чорниця",false]
     ]
   },
 
   {
-    category: "🌾 Крупи та каші",
-    emoji: "🌾",
-    items: [
-      ["Рис", false],
-      ["Гречка", false],
-      ["Вівсянка", false],
-      ["Кукурудзяна крупа", false],
-      ["Пшоно", false],
-      ["Пшениця", true],
-      ["Ячмінь", true]
+    category:"🌾 Крупи та каші",
+    emoji:"🌾",
+    items:[
+      ["Рис",false],
+      ["Гречка",false],
+      ["Вівсянка",false],
+      ["Кукурудзяна крупа",false],
+      ["Пшоно",false],
+      ["Пшениця",true],
+      ["Ячмінь",true]
     ]
   },
 
   {
-    category: "🥩 М'ясо",
-    emoji: "🥩",
-    items: [
-      ["Курка", false],
-      ["Індичка", false],
-      ["Кролик", false],
-      ["Яловичина", false],
-      ["Телятина", false]
+    category:"🥩 М'ясо",
+    emoji:"🥩",
+    items:[
+      ["Курка",false],
+      ["Індичка",false],
+      ["Кролик",false],
+      ["Яловичина",false],
+      ["Телятина",false]
     ]
   },
 
   {
-    category: "🐟 Риба та морепродукти",
-    emoji: "🐟",
-    items: [
-      ["Лосось", true],
-      ["Тріска", true],
-      ["Хек", true],
-      ["Форель", true],
-      ["Креветки", true]
+    category:"🐟 Риба та морепродукти",
+    emoji:"🐟",
+    items:[
+      ["Лосось",true],
+      ["Тріска",true],
+      ["Хек",true],
+      ["Форель",true],
+      ["Креветки",true]
     ]
   },
 
   {
-    category: "🥚 Яйця",
-    emoji: "🥚",
-    items: [
-      ["Куряче яйце", true]
+    category:"🥚 Яйця",
+    emoji:"🥚",
+    items:[
+      ["Куряче яйце",true]
     ]
   },
 
   {
-    category: "🥛 Молочні продукти",
-    emoji: "🥛",
-    items: [
-      ["Натуральний йогурт", false],
-      ["Сир", false],
-      ["Коров'яче молоко", true]
+    category:"🥛 Молочні продукти",
+    emoji:"🥛",
+    items:[
+      ["Натуральний йогурт",false],
+      ["Сир",false],
+      ["Коров'яче молоко",true]
     ]
   },
 
   {
-    category: "🥜 Бобові та горіхи",
-    emoji: "🥜",
-    items: [
-      ["Чечевиця", false],
-      ["Нут", false],
-      ["Арахіс", true],
-      ["Мигдаль", true],
-      ["Кеш'ю", true],
-      ["Волоський горіх", true]
+    category:"🥜 Бобові та горіхи",
+    emoji:"🥜",
+    items:[
+      ["Чечевиця",false],
+      ["Нут",false],
+      ["Арахіс",true],
+      ["Мигдаль",true],
+      ["Кеш'ю",true],
+      ["Волоський горіх",true]
     ]
   }
 
 ];
 
 
-const allergenFoods = [
+const allergenFoods=[
   "Куряче яйце",
   "Арахіс",
   "Мигдаль",
@@ -678,56 +819,74 @@ const allergenFoods = [
 ];
 
 
-let introducedFoods =
-  JSON.parse(localStorage.getItem("introducedFoods")) || [];
+/* =========================
+   СОХРАНЕНИЕ
+========================= */
 
-let introducedAllergens =
-  JSON.parse(localStorage.getItem("introducedAllergens")) || [];
+let introducedFoods=
+  JSON.parse(localStorage.getItem("introducedFoods"))||[];
 
-let diaryEntries =
-  JSON.parse(localStorage.getItem("diaryEntries")) || [];
+let introducedAllergens=
+  JSON.parse(localStorage.getItem("introducedAllergens"))||[];
 
-let currentFilter = "all";
+let diaryEntries=
+  JSON.parse(localStorage.getItem("diaryEntries"))||[];
 
-let editingDiaryId = null;
+
+let currentFilter="all";
+let editingDiaryId=null;
 
 
-/* NAVIGATION */
+/* =========================
+   КАЛЕНДАРЬ
+========================= */
 
-function showSection(id, button) {
+let calendarDate=new Date();
 
-  document.querySelectorAll(".section").forEach(section => {
-    section.classList.remove("active");
-  });
 
-  document.getElementById(id).classList.add("active");
+/* =========================
+   НАВИГАЦИЯ
+========================= */
 
-  document.querySelectorAll("nav button").forEach(btn => {
-    btn.classList.remove("active");
-  });
+function showSection(id,button){
+
+  document.querySelectorAll(".section")
+    .forEach(s=>s.classList.remove("active"));
+
+  document.getElementById(id)
+    .classList.add("active");
+
+  document.querySelectorAll("nav button")
+    .forEach(b=>b.classList.remove("active"));
 
   button.classList.add("active");
 
-  if (id === "stats") {
+  if(id==="calendar"){
+    renderCalendar();
+  }
+
+  if(id==="stats"){
     renderStats();
   }
 
-  if (id === "calendar") {
-    renderCalendar();
+  if(id==="diary"){
+    populateProductSelect();
+    renderDiary();
   }
 
 }
 
 
-/* FILTER */
+/* =========================
+   ФИЛЬТРЫ
+========================= */
 
-function setFilter(filter, button) {
+function setFilter(filter,button){
 
-  currentFilter = filter;
+  currentFilter=filter;
 
-  document.querySelectorAll(".filters button").forEach(btn => {
-    btn.classList.remove("active");
-  });
+  document.querySelectorAll(".filters button")
+    .forEach(b=>b.classList.remove("active"));
 
   button.classList.add("active");
 
@@ -736,120 +895,124 @@ function setFilter(filter, button) {
 }
 
 
-/* FOOD LIST */
+/* =========================
+   КАРТОЧКИ ПРОДУКТОВ
+========================= */
 
-function renderFoods() {
+function renderFoods(){
 
-  const container =
+  const container=
     document.getElementById("foodContainer");
 
-  const search =
-    document.getElementById("foodSearch").value
-      .toLowerCase()
-      .trim();
+  const search=
+    document.getElementById("foodSearch")
+      .value.toLowerCase().trim();
 
-  container.innerHTML = "";
+  container.innerHTML="";
 
-  let totalVisible = 0;
+  let visible=0;
 
-  foods.forEach(category => {
+  foods.forEach(category=>{
 
-    const visibleItems = category.items.filter(item => {
+    const items=category.items.filter(item=>{
 
-      const name = item[0];
-      const allergen = item[1];
+      const name=item[0];
+      const allergen=item[1];
 
-      const matchesSearch =
-        name.toLowerCase().includes(search);
-
-      const isIntroduced =
+      const introduced=
         introducedFoods.includes(name);
 
-      let matchesFilter = true;
+      const searchMatch=
+        name.toLowerCase().includes(search);
 
-      if (currentFilter === "introduced") {
-        matchesFilter = isIntroduced;
+      let filterMatch=true;
+
+      if(currentFilter==="introduced"){
+        filterMatch=introduced;
       }
 
-      if (currentFilter === "notIntroduced") {
-        matchesFilter = !isIntroduced;
+      if(currentFilter==="notIntroduced"){
+        filterMatch=!introduced;
       }
 
-      if (currentFilter === "allergen") {
-        matchesFilter = allergen;
+      if(currentFilter==="allergen"){
+        filterMatch=allergen;
       }
 
-      return matchesSearch && matchesFilter;
+      return searchMatch&&filterMatch;
 
     });
 
-    if (visibleItems.length === 0) {
-      return;
-    }
+    if(!items.length)return;
 
-    totalVisible += visibleItems.length;
+    visible+=items.length;
 
-    const categoryDiv =
+    const categoryDiv=
       document.createElement("div");
 
-    categoryDiv.className = "category";
+    categoryDiv.className="category";
 
-    categoryDiv.innerHTML =
-      `<div class="category-title">
-        ${category.category}
-      </div>`;
+    categoryDiv.innerHTML=
+      `<div class="category-title">${category.category}</div>`;
 
-    const grid =
+    const grid=
       document.createElement("div");
 
-    grid.className = "food-grid";
+    grid.className="food-grid";
 
-    visibleItems.forEach(item => {
+    items.forEach(item=>{
 
-      const name = item[0];
-      const allergen = item[1];
+      const name=item[0];
+      const allergen=item[1];
 
-      const isIntroduced =
+      const introduced=
         introducedFoods.includes(name);
 
-      const card =
+      const card=
         document.createElement("div");
 
-      card.className =
-        "food-card" +
-        (isIntroduced ? " introduced" : "");
+      card.className=
+        "food-card"+
+        (introduced?" introduced":"");
 
-      card.innerHTML = `
+      card.innerHTML=`
 
-        <div class="food-top">
-
-          <div class="food-emoji">
-            ${category.emoji}
-          </div>
-
-          ${
-            allergen
-            ? `<span class="allergen-badge">Алерген</span>`
-            : ""
-          }
-
+        <div class="food-emoji">
+          ${category.emoji}
         </div>
 
         <div class="food-name">
           ${name}
         </div>
 
+        ${
+          allergen
+          ? `<span class="food-badge badge-allergen">
+               🥜 Алерген
+             </span>`
+          : ""
+        }
+
+        ${
+          introduced
+          ? `<span class="food-badge badge-done">
+               ✓ Введено
+             </span>`
+          : ""
+        }
+
         <label>
 
           <input
             type="checkbox"
-            ${isIntroduced ? "checked" : ""}
+            ${introduced?"checked":""}
             onchange="toggleFood('${escapeQuotes(name)}')"
           >
 
-          ${isIntroduced ? "Введено 🌸" : "Ще не введено"}
+          ${introduced?"Введено 🌸":"Ще не введено"}
 
         </label>
+
       `;
 
       grid.appendChild(card);
@@ -857,35 +1020,34 @@ function renderFoods() {
     });
 
     categoryDiv.appendChild(grid);
-
     container.appendChild(categoryDiv);
 
   });
 
+  if(!visible){
 
-  if (totalVisible === 0) {
-
-    container.innerHTML = `
-      <div class="empty">
-        🌸 Нічого не знайдено
-      </div>
-    `;
+    container.innerHTML=
+      `<div class="empty">🌸 Нічого не знайдено</div>`;
 
   }
+
+  updateProgress();
 
 }
 
 
-/* FOOD CHECKBOX */
+/* =========================
+   ПРОДУКТ
+========================= */
 
-function toggleFood(name) {
+function toggleFood(name){
 
-  if (introducedFoods.includes(name)) {
+  if(introducedFoods.includes(name)){
 
-    introducedFoods =
-      introducedFoods.filter(item => item !== name);
+    introducedFoods=
+      introducedFoods.filter(x=>x!==name);
 
-  } else {
+  }else{
 
     introducedFoods.push(name);
 
@@ -903,32 +1065,34 @@ function toggleFood(name) {
 }
 
 
-/* ALLERGENS */
+/* =========================
+   АЛЕРГЕНЫ
+========================= */
 
-function renderAllergens() {
+function renderAllergens(){
 
-  const container =
+  const container=
     document.getElementById("allergenContainer");
 
-  container.innerHTML = "";
+  container.innerHTML="";
 
-  allergenFoods.forEach(name => {
+  allergenFoods.forEach(name=>{
 
-    const checked =
+    const checked=
       introducedAllergens.includes(name);
 
-    const item =
+    const item=
       document.createElement("div");
 
-    item.className = "allergen-item";
+    item.className="allergen-item";
 
-    item.innerHTML = `
+    item.innerHTML=`
 
-      <div class="allergen-item-left">
+      <div class="allergen-left">
 
         <input
           type="checkbox"
-          ${checked ? "checked" : ""}
+          ${checked?"checked":""}
           onchange="toggleAllergen('${escapeQuotes(name)}')"
         >
 
@@ -946,14 +1110,14 @@ function renderAllergens() {
 }
 
 
-function toggleAllergen(name) {
+function toggleAllergen(name){
 
-  if (introducedAllergens.includes(name)) {
+  if(introducedAllergens.includes(name)){
 
-    introducedAllergens =
-      introducedAllergens.filter(item => item !== name);
+    introducedAllergens=
+      introducedAllergens.filter(x=>x!==name);
 
-  } else {
+  }else{
 
     introducedAllergens.push(name);
 
@@ -970,41 +1134,103 @@ function toggleAllergen(name) {
 }
 
 
-/* DIARY */
+/* =========================
+   ВЫБОР ПРОДУКТА В ДНЕВНИКЕ
+========================= */
 
-function saveDiaryEntry() {
+function populateProductSelect(){
 
-  const date =
+  const select=
+    document.getElementById("diaryProductSelect");
+
+  if(!select)return;
+
+  const current=select.value;
+
+  select.innerHTML=
+    `<option value="">Оберіть продукт</option>`;
+
+  foods.forEach(category=>{
+
+    const group=
+      document.createElement("optgroup");
+
+    group.label=category.category;
+
+    category.items.forEach(item=>{
+
+      const option=
+        document.createElement("option");
+
+      option.value=item[0];
+      option.textContent=item[0];
+
+      group.appendChild(option);
+
+    });
+
+    select.appendChild(group);
+
+  });
+
+  select.value=current;
+
+}
+
+
+function productSelectChanged(){
+
+  const value=
+    document.getElementById("diaryProductSelect").value;
+
+  if(value){
+
+    document.getElementById("diaryProduct").value=value;
+
+  }
+
+}
+
+
+/* =========================
+   ДНЕВНИК
+========================= */
+
+function saveDiaryEntry(){
+
+  const date=
     document.getElementById("diaryDate").value;
 
-  const product =
-    document.getElementById("diaryProduct").value.trim();
+  const product=
+    document.getElementById("diaryProduct")
+      .value.trim();
 
-  const amount =
-    document.getElementById("diaryAmount").value.trim();
+  const amount=
+    document.getElementById("diaryAmount")
+      .value.trim();
 
-  const reaction =
+  const reaction=
     document.getElementById("diaryReaction").value;
 
-  const notes =
-    document.getElementById("diaryNotes").value.trim();
+  const notes=
+    document.getElementById("diaryNotes")
+      .value.trim();
 
-  const photoInput =
+  const photoInput=
     document.getElementById("diaryPhoto");
 
-  if (!date || !product) {
+  if(!date||!product){
 
     alert("Будь ласка, вкажи дату та продукт 🌸");
     return;
 
   }
 
-  if (photoInput.files.length > 0) {
+  if(photoInput.files.length){
 
-    const reader =
-      new FileReader();
+    const reader=new FileReader();
 
-    reader.onload = function(e) {
+    reader.onload=function(e){
 
       finishDiarySave(
         date,
@@ -1019,7 +1245,7 @@ function saveDiaryEntry() {
 
     reader.readAsDataURL(photoInput.files[0]);
 
-  } else {
+  }else{
 
     finishDiarySave(
       date,
@@ -1042,37 +1268,34 @@ function finishDiarySave(
   reaction,
   notes,
   photo
-) {
+){
 
-  if (editingDiaryId) {
+  if(editingDiaryId){
 
-    const entry =
-      diaryEntries.find(
-        item => item.id === editingDiaryId
-      );
+    const entry=
+      diaryEntries.find(x=>x.id===editingDiaryId);
 
-    if (entry) {
+    if(entry){
 
-      entry.date = date;
-      entry.product = product;
-      entry.amount = amount;
-      entry.reaction = reaction;
-      entry.notes = notes;
+      entry.date=date;
+      entry.product=product;
+      entry.amount=amount;
+      entry.reaction=reaction;
+      entry.notes=notes;
 
-      if (photo) {
-        entry.photo = photo;
+      if(photo){
+        entry.photo=photo;
       }
 
     }
 
-    editingDiaryId = null;
+    editingDiaryId=null;
 
-  } else {
+  }else{
 
     diaryEntries.push({
 
-      id: Date.now(),
-
+      id:Date.now(),
       date,
       product,
       amount,
@@ -1097,147 +1320,142 @@ function finishDiarySave(
 }
 
 
-function clearDiaryForm() {
+function clearDiaryForm(){
 
-  document.getElementById("diaryDate").value = "";
-  document.getElementById("diaryProduct").value = "";
-  document.getElementById("diaryAmount").value = "";
-  document.getElementById("diaryReaction").selectedIndex = 0;
-  document.getElementById("diaryNotes").value = "";
-  document.getElementById("diaryPhoto").value = "";
+  document.getElementById("diaryDate").value=
+    todayString();
+
+  document.getElementById("diaryProduct").value="";
+  document.getElementById("diaryProductSelect").value="";
+  document.getElementById("diaryAmount").value="";
+  document.getElementById("diaryReaction").selectedIndex=0;
+  document.getElementById("diaryNotes").value="";
+  document.getElementById("diaryPhoto").value="";
 
 }
 
 
-function renderDiary() {
+function renderDiary(){
 
-  const container =
+  const container=
     document.getElementById("diaryContainer");
 
-  container.innerHTML = "";
+  container.innerHTML="";
 
-  if (diaryEntries.length === 0) {
+  if(!diaryEntries.length){
 
-    container.innerHTML = `
-      <div class="empty">
+    container.innerHTML=
+      `<div class="empty">
         📖 Поки що записів немає
-      </div>
-    `;
+      </div>`;
 
     return;
 
   }
 
-  const sorted =
-    [...diaryEntries].sort(
-      (a, b) =>
-        new Date(b.date) - new Date(a.date)
-    );
+  [...diaryEntries]
+    .sort((a,b)=>new Date(b.date)-new Date(a.date))
+    .forEach(entry=>{
 
-  sorted.forEach(entry => {
+      const card=
+        document.createElement("div");
 
-    const card =
-      document.createElement("div");
+      card.className="card";
 
-    card.className = "card";
+      card.innerHTML=`
 
-    card.innerHTML = `
+        <h3>🌸 ${entry.product}</h3>
 
-      <h3>🌸 ${entry.product}</h3>
+        <p><b>Дата:</b> ${formatDate(entry.date)}</p>
 
-      <p><b>Дата:</b> ${formatDate(entry.date)}</p>
+        ${
+          entry.amount
+          ? `<p><b>Кількість:</b> ${entry.amount}</p>`
+          :""
+        }
 
-      ${
-        entry.amount
-        ? `<p><b>Кількість:</b> ${entry.amount}</p>`
-        : ""
-      }
+        <p><b>Реакція:</b> ${entry.reaction}</p>
 
-      <p><b>Реакція:</b> ${entry.reaction}</p>
+        ${
+          entry.notes
+          ? `<p><b>Нотатки:</b> ${entry.notes}</p>`
+          :""
+        }
 
-      ${
-        entry.notes
-        ? `<p><b>Нотатки:</b> ${entry.notes}</p>`
-        : ""
-      }
+        ${
+          entry.photo
+          ? `<img class="diary-photo" src="${entry.photo}">`
+          :""
+        }
 
-      ${
-        entry.photo
-        ? `<img
-            class="diary-photo"
-            src="${entry.photo}"
-          >`
-        : ""
-      }
+        <div class="entry-buttons">
 
-      <div class="entry-buttons">
+          <button
+            class="edit"
+            onclick="editDiary(${entry.id})"
+          >
+            ✏️ Редагувати
+          </button>
 
-        <button
-          class="edit"
-          onclick="editDiary(${entry.id})"
-        >
-          ✏️ Редагувати
-        </button>
+          <button
+            class="delete"
+            onclick="deleteDiary(${entry.id})"
+          >
+            🗑 Видалити
+          </button>
 
-        <button
-          class="delete"
-          onclick="deleteDiary(${entry.id})"
-        >
-          🗑 Видалити
-        </button>
+        </div>
 
-      </div>
-    `;
+      `;
 
-    container.appendChild(card);
+      container.appendChild(card);
 
-  });
+    });
 
 }
 
 
-function editDiary(id) {
+function editDiary(id){
 
-  const entry =
-    diaryEntries.find(item => item.id === id);
+  const entry=
+    diaryEntries.find(x=>x.id===id);
 
-  if (!entry) return;
+  if(!entry)return;
 
-  document.getElementById("diaryDate").value =
+  document.getElementById("diaryDate").value=
     entry.date;
 
-  document.getElementById("diaryProduct").value =
+  document.getElementById("diaryProduct").value=
     entry.product;
 
-  document.getElementById("diaryAmount").value =
-    entry.amount || "";
+  document.getElementById("diaryProductSelect").value=
+    entry.product;
 
-  document.getElementById("diaryReaction").value =
+  document.getElementById("diaryAmount").value=
+    entry.amount||"";
+
+  document.getElementById("diaryReaction").value=
     entry.reaction;
 
-  document.getElementById("diaryNotes").value =
-    entry.notes || "";
+  document.getElementById("diaryNotes").value=
+    entry.notes||"";
 
-  editingDiaryId = id;
+  editingDiaryId=id;
 
   window.scrollTo({
-    top: 0,
-    behavior: "smooth"
+    top:0,
+    behavior:"smooth"
   });
 
 }
 
 
-function deleteDiary(id) {
+function deleteDiary(id){
 
-  if (!confirm("Видалити цей запис?")) {
-    return;
-  }
+  if(!confirm("Видалити цей запис?"))return;
 
-  diaryEntries =
-    diaryEntries.filter(
-      item => item.id !== id
-    );
+  diaryEntries=
+    diaryEntries.filter(x=>x.id!==id);
 
   localStorage.setItem(
     "diaryEntries",
@@ -1251,140 +1469,264 @@ function deleteDiary(id) {
 }
 
 
-/* CALENDAR */
+/* =========================
+   КАЛЕНДАР
+========================= */
 
-function renderCalendar() {
+function changeMonth(direction){
 
-  const container =
-    document.getElementById("calendarContainer");
+  calendarDate.setMonth(
+    calendarDate.getMonth()+direction
+  );
 
-  container.innerHTML = "";
+  renderCalendar();
 
-  if (diaryEntries.length === 0) {
+}
 
-    container.innerHTML = `
-      <div class="empty">
-        📅 Поки що немає записів
-      </div>
-    `;
+
+function renderCalendar(){
+
+  const grid=
+    document.getElementById("calendarGrid");
+
+  if(!grid)return;
+
+  const year=
+    calendarDate.getFullYear();
+
+  const month=
+    calendarDate.getMonth();
+
+  const monthNames=[
+    "Січень","Лютий","Березень",
+    "Квітень","Травень","Червень",
+    "Липень","Серпень","Вересень",
+    "Жовтень","Листопад","Грудень"
+  ];
+
+  document.getElementById("monthTitle")
+    .textContent=
+      `${monthNames[month]} ${year}`;
+
+  grid.innerHTML="";
+
+  const firstDay=
+    new Date(year,month,1).getDay();
+
+  const offset=
+    firstDay===0?6:firstDay-1;
+
+  const daysInMonth=
+    new Date(year,month+1,0).getDate();
+
+  for(let i=0;i<offset;i++){
+
+    const empty=
+      document.createElement("div");
+
+    empty.className="day empty";
+
+    grid.appendChild(empty);
+
+  }
+
+  for(let day=1;day<=daysInMonth;day++){
+
+    const button=
+      document.createElement("button");
+
+    button.className="day";
+
+    const dateString=
+      `${year}-${String(month+1).padStart(2,"0")}-${String(day).padStart(2,"0")}`;
+
+    const hasEntry=
+      diaryEntries.some(x=>x.date===dateString);
+
+    if(hasEntry){
+      button.classList.add("has-entry");
+    }
+
+    if(dateString===todayString()){
+      button.classList.add("today");
+    }
+
+    button.innerHTML=
+      `${day}${hasEntry?'<span class="day-dot"></span>':""}`;
+
+    button.onclick=
+      ()=>showDateEntries(dateString);
+
+    grid.appendChild(button);
+
+  }
+
+}
+
+
+function showDateEntries(date){
+
+  const container=
+    document.getElementById("selectedDateEntries");
+
+  const entries=
+    diaryEntries.filter(x=>x.date===date);
+
+  container.innerHTML=
+    `<div class="date-title">
+      📅 ${formatDate(date)}
+    </div>`;
+
+  if(!entries.length){
+
+    container.innerHTML+=
+      `<div class="empty">
+        Цього дня записів немає 🌸
+      </div>`;
 
     return;
 
   }
 
-  const grouped = {};
+  entries.forEach(entry=>{
 
-  diaryEntries.forEach(entry => {
+    const card=
+      document.createElement("div");
 
-    if (!grouped[entry.date]) {
-      grouped[entry.date] = [];
-    }
+    card.className="card";
 
-    grouped[entry.date].push(entry);
+    card.innerHTML=`
+      <b>🌸 ${entry.product}</b>
+      <p class="small-note">
+        ${entry.reaction}
+        ${entry.amount?" · "+entry.amount:""}
+      </p>
+      ${
+        entry.notes
+        ? `<p class="small-note">${entry.notes}</p>`
+        :""
+      }
+    `;
+
+    container.appendChild(card);
 
   });
 
-
-  Object.keys(grouped)
-    .sort()
-    .reverse()
-    .forEach(date => {
-
-      const div =
-        document.createElement("div");
-
-      div.className = "date-group";
-
-      div.innerHTML = `
-        <div class="date-title">
-          📅 ${formatDate(date)}
-        </div>
-      `;
-
-      grouped[date].forEach(entry => {
-
-        const card =
-          document.createElement("div");
-
-        card.className = "card";
-
-        card.innerHTML = `
-          <b>🌸 ${entry.product}</b>
-          <div class="small-note">
-            ${entry.reaction}
-            ${
-              entry.amount
-              ? " · " + entry.amount
-              : ""
-            }
-          </div>
-        `;
-
-        div.appendChild(card);
-
-      });
-
-      container.appendChild(div);
-
-    });
-
 }
 
 
-/* STATS */
+/* =========================
+   СТАТИСТИКА
+========================= */
 
-function renderStats() {
+function renderStats(){
 
-  const total =
+  const total=
     foods.reduce(
-      (sum, category) =>
-        sum + category.items.length,
+      (sum,cat)=>sum+cat.items.length,
       0
     );
 
-  document.getElementById("statIntroduced").textContent =
+  const introduced=
     introducedFoods.length;
 
-  document.getElementById("statTotal").textContent =
-    total;
+  const remaining=
+    Math.max(total-introduced,0);
 
-  document.getElementById("statAllergens").textContent =
-    introducedAllergens.length;
+  const percent=
+    total
+    ? Math.round(introduced/total*100)
+    : 0;
 
-  document.getElementById("statDiary").textContent =
-    diaryEntries.length;
+  document.getElementById("statIntroduced")
+    .textContent=introduced;
+
+  document.getElementById("statRemaining")
+    .textContent=remaining;
+
+  document.getElementById("statAllergens")
+    .textContent=introducedAllergens.length;
+
+  document.getElementById("statDiary")
+    .textContent=diaryEntries.length;
+
+  document.getElementById("statsPercent")
+    .textContent=percent+"%";
+
+  document.getElementById("statsBar")
+    .style.width=percent+"%";
+
+  updateProgress();
 
 }
 
 
-/* HELPERS */
+function updateProgress(){
 
-function formatDate(date) {
+  const total=
+    foods.reduce(
+      (sum,cat)=>sum+cat.items.length,
+      0
+    );
 
-  if (!date) return "";
+  const percent=
+    total
+    ? Math.round(introducedFoods.length/total*100)
+    : 0;
 
-  const parts =
-    date.split("-");
+  const bar=
+    document.getElementById("progressBar");
 
-  return `${parts[2]}.${parts[1]}.${parts[0]}`;
+  const text=
+    document.getElementById("progressText");
+
+  if(bar)bar.style.width=percent+"%";
+  if(text)text.textContent=percent+"%";
 
 }
 
 
-function escapeQuotes(text) {
+/* =========================
+   ВСПОМОГАТЕЛЬНЫЕ
+========================= */
+
+function todayString(){
+
+  const d=new Date();
+
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+
+}
+
+
+function formatDate(date){
+
+  if(!date)return"";
+
+  const p=date.split("-");
+
+  return `${p[2]}.${p[1]}.${p[0]}`;
+
+}
+
+
+function escapeQuotes(text){
 
   return text
-    .replace(/\\/g, "\\\\")
-    .replace(/'/g, "\\'");
+    .replace(/\\/g,"\\\\")
+    .replace(/'/g,"\\'");
 
 }
 
 
-/* INITIAL LOAD */
+/* =========================
+   ЗАПУСК
+========================= */
 
-document.getElementById("diaryDate").value =
-  new Date().toISOString().split("T")[0];
+document.getElementById("diaryDate").value=
+  todayString();
 
+populateProductSelect();
 renderFoods();
 renderAllergens();
 renderDiary();
